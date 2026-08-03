@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Your Pathway Home - Tudy Valdez, Realtor(R) with AXEN Realty. Buy and sell homes across Tulsa County and Oklahoma." />
+  <title>Mortgage Calculator | Your Pathway Home | Tudy Valdez</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="assets/logo-dark.png" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/logo-dark.png" alt="Your Pathway Home logo" width="48" height="48" />
+        <span class="brand-text">
+          <strong>Your Pathway Home</strong>
+          <span>Tudy Valdez | Realtor(R) | AXEN Realty</span>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="nav" id="site-nav">
+        <a href="index.html">Home</a>
+        <a href="buy.html">Buy</a>
+        <a href="sell.html">Sell</a>
+        <a href="search.html">Search</a>
+        <div class="nav-drop is-open">
+          <button type="button" class="nav-drop-btn" aria-expanded="true" aria-haspopup="true">Tools</button>
+          <div class="nav-drop-menu" role="menu">
+            <a href="tools.html" aria-current="page" role="menuitem">All tools</a>
+            <a href="tools-mortgage.html" aria-current="page" role="menuitem">Mortgage calculator</a>
+            <a href="tools-net-sheet.html" role="menuitem">Seller net sheet</a>
+            <a href="tools-buyer-checklist.html" role="menuitem">Buyer checklist</a>
+            <a href="tools-seller-checklist.html" role="menuitem">Seller checklist</a>
+            <a href="tools-closing-costs.html" role="menuitem">Closing costs</a>
+          </div>
+        </div>
+        <a href="homestead.html">Homestead</a>
+        <a href="neighborhoods.html">Neighborhoods</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-cta">
+        <a class="btn btn-ghost" href="sms:9188133771">Text</a>
+        <a class="btn btn-primary" href="tel:9188133771">Call</a>
+      </div>
+    </div>
+  </header>
+  <main id="main"><section class="page-hero"><div class="container">
+  <span class="badge">Tools</span>
+  <h1>Mortgage / payment estimator</h1>
+  <p class="lead">Educational estimate only - not a lender quote. Compare common loan types below.</p>
+  <p><a class="btn btn-ghost" href="tools.html">All tools</a></p>
+</div></section>
+<section><div class="container">
+  <div class="tool-panel" id="mortgage">
+    <form id="mortgage-form" class="form">
+      <div class="grid-2">
+        <label>Home price ($)<input id="home-price" type="number" value="300000" min="0" step="1000" /></label>
+        <label>Down payment (%)<input id="down-pct" type="number" value="5" min="0" max="100" step="0.5" /></label>
+        <label>Interest rate (%)<input id="rate" type="number" value="6.5" min="0" step="0.125" /></label>
+        <label>Term (years)<input id="years" type="number" value="30" min="1" max="40" /></label>
+        <label>Property tax / mo ($)<input id="tax-mo" type="number" value="250" min="0" /></label>
+        <label>Insurance / mo ($)<input id="ins-mo" type="number" value="150" min="0" /></label>
+        <label>HOA / mo ($)<input id="hoa-mo" type="number" value="0" min="0" /></label>
+      </div>
+      <button class="btn btn-primary" type="submit">Calculate</button>
+    </form>
+    <div class="tool-result" id="mortgage-result">Enter numbers and calculate.</div>
+  </div>
+
+  <h2 class="section-title" style="margin-top:2rem">Top 10 popular home loans</h2>
+  <p class="section-sub">General education for buyers. Product rules and pricing change - always confirm with a licensed lender.</p>
+  <div class="grid-2">
+    <div class="card"><h3>1. Conventional 30-year fixed</h3><p><strong>Pros:</strong> Stable payment; widely available; builds equity predictably.<br/><strong>Cons:</strong> Stricter credit/down-payment standards than some government loans; PMI if down payment is under 20%.</p></div>
+    <div class="card"><h3>2. Conventional 15-year fixed</h3><p><strong>Pros:</strong> Lower total interest; often lower rate; debt-free faster.<br/><strong>Cons:</strong> Higher monthly payment; less cash-flow flexibility.</p></div>
+    <div class="card"><h3>3. FHA loan</h3><p><strong>Pros:</strong> Lower down payment and more flexible credit guidelines for many buyers.<br/><strong>Cons:</strong> Mortgage insurance is required (often for a long time); property condition standards apply.</p></div>
+    <div class="card"><h3>4. VA loan</h3><p><strong>Pros:</strong> Often $0 down for eligible veterans/service members; competitive rates; no monthly PMI.<br/><strong>Cons:</strong> Funding fee may apply; eligibility required; some sellers less familiar with process.</p></div>
+    <div class="card"><h3>5. USDA loan</h3><p><strong>Pros:</strong> $0 down in eligible rural/suburban areas; designed for moderate incomes.<br/><strong>Cons:</strong> Location and income limits; not available in many city cores.</p></div>
+    <div class="card"><h3>6. Adjustable-rate mortgage (ARM)</h3><p><strong>Pros:</strong> Lower initial rate/payment; can help short-term owners or refinancers.<br/><strong>Cons:</strong> Payment can rise after the fixed period; harder to budget long term.</p></div>
+    <div class="card"><h3>7. Jumbo loan</h3><p><strong>Pros:</strong> Finances higher-priced homes above conforming limits.<br/><strong>Cons:</strong> Larger down payment and stronger credit/reserves usually required; tighter underwriting.</p></div>
+    <div class="card"><h3>8. HomeReady / Home Possible (low down conventional)</h3><p><strong>Pros:</strong> Lower down payment options with education/income-friendly guidelines.<br/><strong>Cons:</strong> Program rules and occupancy limits; PMI typically required until equity builds.</p></div>
+    <div class="card"><h3>9. Bank statement / non-QM loan</h3><p><strong>Pros:</strong> Helps self-employed buyers who do not document income with W-2s alone.<br/><strong>Cons:</strong> Higher rates/fees; larger down payment common; fewer lenders.</p></div>
+    <div class="card"><h3>10. Bridge / temporary financing</h3><p><strong>Pros:</strong> Can help buy before a current home sells.<br/><strong>Cons:</strong> Higher cost and risk if the sale is delayed; short-term only.</p></div>
+  </div>
+  <p class="disclaimer" style="margin-top:1.25rem">Not a commitment to lend. Loan availability depends on credit, income, property, and lender overlays. Text Tudy at 918-813-3771 for local lender introductions.</p>
+</div></section>  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h4>Your Pathway Home</h4>
+        <p>Tudy Valdez, Realtor(R)</p>
+        <a href="tel:9188133771">918-813-3771</a>
+        <a href="mailto:tvaldez@axenrealty.com">tvaldez@axenrealty.com</a>
+        <p>OK License #170566</p>
+        <p>Serving Tulsa County &amp; all of Oklahoma</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="buy.html">Buy a home</a>
+        <a href="sell.html">Sell a home</a>
+        <a href="search.html">Home search</a>
+        <a href="tools.html">All tools</a>
+        <a href="tools-mortgage.html">Mortgage calculator</a>
+        <a href="tools-net-sheet.html">Seller net sheet</a>
+        <a href="homestead.html">Homestead exemption</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <a href="first-time-buyers.html">First-time buyers</a>
+        <a href="relocating.html">Relocating to Oklahoma</a>
+        <a href="neighborhoods.html">Neighborhoods</a>
+        <a href="market.html">Market snapshot</a>
+        <a href="recruiting.html">Careers / recruiting</a>
+        <a href="bio.html">Link-in-bio</a>
+      </div>
+      <div>
+        <h4>Oklahoma office</h4>
+        <p>AXEN Realty, LLC</p>
+        <p>110 S Hartford Ave, Suite 100<br/>Tulsa, OK 74120</p>
+        <a href="tel:9188133771">+1 (918) 813-3771</a>
+        <a href="mailto:tvaldez@axenrealty.com">tvaldez@axenrealty.com</a>
+        <p>Tudy Valdez, Realtor(R) | OK #170566</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© <span id="year"></span> Tudy Valdez | Your Pathway Home | AXEN Realty. All rights reserved.</p>
+      <p class="fair-housing">
+        We are committed to the letter and spirit of the Fair Housing Act and Equal Opportunity in housing.
+        All real estate information is believed accurate but is not guaranteed - verify independently.
+        IDX / MLS content, when shown, is subject to applicable MLS rules and disclaimers.
+      </p>
+      <p>
+        <a href="privacy.html">Privacy</a> |
+        <a href="contact.html">Contact</a> |
+        <a href="testimonials.html">Reviews</a>
+      </p>
+    </div>
+  </footer>
+  <div class="sticky-cta" aria-label="Quick contact">
+    <a class="btn btn-ghost" href="sms:9188133771">Text Tudy</a>
+    <a class="btn btn-primary" href="tel:9188133771">Call</a>
+    <a class="btn btn-ghost" href="contact.html">Form</a>
+  </div>
+  <script src="js/main.js"></script>
+  <script src="js/calculators.js"></script>
+</body>
+</html>
