@@ -59,22 +59,33 @@
   <main id="main"><section class="page-hero"><div class="container">
   <span class="badge">Seller tools</span>
   <h1>Sell or rent?</h1>
-  <p class="lead">Rough cash comparison plus questions that numbers alone cannot answer.</p>
+  <p class="lead">For owners deciding whether to <strong>sell now</strong> or <strong>keep the home and rent it out</strong>. Fields are split by scenario.</p>
   <p><a class="btn btn-ghost" href="tools.html#sellers">All seller tools</a></p>
 </div></section>
 <section><div class="container">
   <div class="tool-panel">
     <form id="sellrent-form" class="form">
-      <div class="grid-2">
-        <label>Est. market value ($)<input id="sr-value" type="number" value="300000" min="0" step="1000" /></label>
-        <label>Mortgage balance ($)<input id="sr-mortgage-bal" type="number" value="180000" min="0" step="1000" /></label>
-        <label>Selling costs (% of value)<input id="sr-sell-cost" type="number" value="7" min="0" step="0.5" /></label>
-        <label>Expected rent / mo ($)<input id="sr-rent" type="number" value="1900" min="0" step="50" /></label>
-        <label>Landlord expenses / mo ($)<input id="sr-exp" type="number" value="350" min="0" step="25" /></label>
-        <label>PITI / HOA if renting / mo ($)<input id="sr-pitia" type="number" value="1600" min="0" step="25" /></label>
-        <label>Years to compare<input id="sr-years" type="number" value="5" min="1" max="30" /></label>
-      </div>
-      <button class="btn btn-primary" type="submit">Compare</button>
+      <fieldset class="tool-fieldset">
+        <legend>If you sell</legend>
+        <div class="grid-2">
+          <label>Est. market value / sale price ($)<input id="sr-value" type="number" value="300000" min="0" step="1000" /></label>
+          <label>Mortgage payoff balance ($)<input id="sr-mortgage-bal" type="number" value="180000" min="0" step="1000" /></label>
+          <label>Selling costs (% of sale price)<span class="tool-hint">Commission, title, concessions, etc.</span><input id="sr-sell-cost" type="number" value="7" min="0" step="0.5" /></label>
+        </div>
+      </fieldset>
+      <fieldset class="tool-fieldset">
+        <legend>If you rent (keep the home as a rental)</legend>
+        <div class="grid-2">
+          <label>Expected rent / mo ($)<input id="sr-rent" type="number" value="1900" min="0" step="50" /></label>
+          <label>Vacancy allowance (%)<span class="tool-hint">Default 10% for empty months / turnover.</span><input id="sr-vacancy" type="number" value="10" min="0" max="50" step="1" /></label>
+          <label>Property management / mo ($)<span class="tool-hint">Defaults to 10% of expected rent. Uncheck below to type your own amount.</span><input id="sr-mgmt" type="number" value="190" min="0" step="10" /></label>
+          <label style="display:flex;align-items:center;gap:0.5rem;flex-direction:row"><input id="sr-mgmt-auto" type="checkbox" checked style="width:auto;margin:0" /> Auto-set management to 10% of rent</label>
+          <label>Other landlord expenses / mo ($)<span class="tool-hint">Repairs, reserves, utilities you pay, etc. (not PITI)</span><input id="sr-exp" type="number" value="350" min="0" step="25" /></label>
+          <label>PITI + HOA / mo while renting ($)<span class="tool-hint">Principal, interest, taxes, insurance, HOA if you keep the loan.</span><input id="sr-pitia" type="number" value="1600" min="0" step="25" /></label>
+          <label>Years to compare<input id="sr-years" type="number" value="5" min="1" max="30" /></label>
+        </div>
+      </fieldset>
+      <button class="btn btn-primary" type="submit">Compare sell vs rent</button>
     </form>
     <div class="tool-result" id="sellrent-result">Enter numbers and compare.</div>
   </div>

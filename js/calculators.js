@@ -90,7 +90,7 @@
     });
   }
 
-  // --- Affordability: how much home ---
+  // --- Affordability: how much home (PMI drops off at 20%+ down) ---
   var aForm = document.getElementById("afford-form");
   if (aForm) {
     aForm.addEventListener("submit", function (e) {
@@ -103,16 +103,33 @@
       var downPct = num("aff-down");
       var taxInsHoa = num("aff-tih");
       var maxHousing = Math.max(0, (income / 12) * (dti / 100) - debts);
+      var needsPmi = downPct < 20;
+      // Typical educational PMI estimate ~0.55% of loan amount per year when down payment is under 20%
+      var annualPmiRate = needsPmi ? 0.0055 : 0;
+
       var maxPi = Math.max(0, maxHousing - taxInsHoa);
       var maxLoan = maxLoanFromPayment(maxPi, rate, years);
-      var maxPrice = downPct >= 100 ? maxLoan : maxLoan / (1 - downPct / 100);
+      var pmiMo = 0;
+      var i;
+      for (i = 0; i < 8; i++) {
+        pmiMo = needsPmi ? (maxLoan * annualPmiRate) / 12 : 0;
+        maxPi = Math.max(0, maxHousing - taxInsHoa - pmiMo);
+        maxLoan = maxLoanFromPayment(maxPi, rate, years);
+      }
+      var maxPrice = downPct >= 100 ? maxLoan : maxLoan / Math.max(0.01, 1 - downPct / 100);
+      var pmiNote = needsPmi
+        ? "Est. PMI (under 20% down): <strong>" + money(pmiMo) + "/mo</strong> — included in the housing budget so max price is lower than with 20%+ down.<br>"
+        : "PMI: <strong>$0 estimated</strong> (20% or higher down payment — no private mortgage insurance in this model).<br>";
+
       setResult(
         "afford-result",
-        "Est. max housing budget: <strong>" + money(maxHousing) + "/mo</strong><br>" +
-        "Est. max P&amp;I: <strong>" + money(maxPi) + "/mo</strong><br>" +
+        "Est. max housing budget (DTI): <strong>" + money(maxHousing) + "/mo</strong><br>" +
+        "Taxes + insurance + HOA (entered): " + money(taxInsHoa) + "/mo<br>" +
+        pmiNote +
+        "Est. max principal &amp; interest (P&amp;I): <strong>" + money(maxPi) + "/mo</strong><br>" +
         "Est. max loan: <strong>" + money(maxLoan) + "</strong><br>" +
         "Est. max home price (with " + downPct + "% down): <strong>" + money(maxPrice) + "</strong><br>" +
-        "<span class='muted'>Uses a simple DTI model. Lenders use different ratios, credit, and reserves. Educational only.</span>"
+        "<span class='muted'>Uses a simple DTI model. At 20%+ down, PMI is removed so more of your budget can go to price/P&amp;I. Lenders use different ratios, credit, and PMI pricing. Educational only.</span>"
       );
     });
   }
@@ -210,18 +227,25 @@
       var price = num("bc-price");
       var loanPct = num("bc-ltv");
       var closePct = num("bc-close-pct");
-      var prepaid = num("bc-prepaid");
+      var taxes = num("bc-taxes");
+      var ins = num("bc-ins");
+      var hoa = num("bc-hoa");
+      var inspections = num("bc-inspections");
       var other = num("bc-other");
       var loan = price * (loanPct / 100);
       var closeFees = price * (closePct / 100);
-      var total = closeFees + prepaid + other;
+      var prepaids = taxes + ins + hoa;
+      var total = closeFees + prepaids + inspections + other;
       setResult(
         "buyclose-result",
         "Est. loan amount: <strong>" + money(loan) + "</strong><br>" +
         "Est. closing fees (" + closePct + "% of price): <strong>" + money(closeFees) + "</strong><br>" +
-        "Prepaids / escrows entered: " + money(prepaid) + "<br>" +
+        "Property taxes (prepaid / escrow): " + money(taxes) + "<br>" +
+        "Insurance (prepaid / escrow): " + money(ins) + "<br>" +
+        "HOA due at closing: " + money(hoa) + "<br>" +
+        "Inspections: " + money(inspections) + "<br>" +
         "Other: " + money(other) + "<br>" +
-        "Rough cash to close (fees + prepaids + other, not including down payment): <strong>" + money(total) + "</strong><br>" +
+        "Rough cash needs besides down payment: <strong>" + money(total) + "</strong><br>" +
         "<span class='muted'>Typical total buyer costs often land ~2–5% of price depending on loan and credits. Not a title or lender quote.</span>"
       );
     });
@@ -289,9 +313,29 @@
     });
   }
 
-  // --- Sell or rent rough ---
+  // --- Sell or rent rough (seller keeping home as rental) ---
   var srForm = document.getElementById("sellrent-form");
   if (srForm) {
+    var rentInput = document.getElementById("sr-rent");
+    var mgmtInput = document.getElementById("sr-mgmt");
+    var mgmtAuto = document.getElementById("sr-mgmt-auto");
+    function syncMgmtFromRent() {
+      if (!rentInput || !mgmtInput) return;
+      if (mgmtAuto && !mgmtAuto.checked) return;
+      var r = Number(rentInput.value) || 0;
+      mgmtInput.value = String(Math.round(r * 0.1));
+    }
+    if (rentInput) {
+      rentInput.addEventListener("input", syncMgmtFromRent);
+      rentInput.addEventListener("change", syncMgmtFromRent);
+    }
+    if (mgmtAuto) {
+      mgmtAuto.addEventListener("change", function () {
+        if (mgmtAuto.checked) syncMgmtFromRent();
+      });
+    }
+    syncMgmtFromRent();
+
     srForm.addEventListener("submit", function (e) {
       e.preventDefault();
       var value = num("sr-value");
@@ -300,18 +344,32 @@
       var rent = num("sr-rent");
       var expenses = num("sr-exp");
       var pitia = num("sr-pitia");
+      var mgmt = num("sr-mgmt");
+      var vacancyPct = num("sr-vacancy") / 100;
       var years = num("sr-years") || 5;
 
-      var sellNet = value - mortgage - value * sellCostPct;
-      var annualCash = (rent - expenses - pitia) * 12;
+      var sellCosts = value * sellCostPct;
+      var sellNet = value - mortgage - sellCosts;
+      var effectiveRent = rent * (1 - vacancyPct);
+      var monthlyCash = effectiveRent - expenses - pitia - mgmt;
+      var annualCash = monthlyCash * 12;
       var rentCashTotal = annualCash * years;
-      // simple: keep property, equity growth ignored beyond mortgage paydown
+
       setResult(
         "sellrent-result",
-        "Est. cash if you sell now: <strong>" + money(sellNet) + "</strong><br>" +
-        "Est. annual cash flow if you rent: <strong>" + money(annualCash) + "/yr</strong><br>" +
+        "<strong>If you SELL</strong><br>" +
+        "Est. sale costs: " + money(sellCosts) + "<br>" +
+        "Est. cash in hand after payoff &amp; sale costs: <strong>" + money(sellNet) + "</strong><br><br>" +
+        "<strong>If you RENT (keep the home)</strong><br>" +
+        "Gross rent: " + money(rent) + "/mo<br>" +
+        "After vacancy (" + (vacancyPct * 100).toFixed(0) + "%): " + money(effectiveRent) + "/mo<br>" +
+        "Property management: " + money(mgmt) + "/mo<br>" +
+        "Other landlord expenses: " + money(expenses) + "/mo<br>" +
+        "PITI / HOA: " + money(pitia) + "/mo<br>" +
+        "Est. monthly cash flow: <strong>" + money(monthlyCash) + "</strong><br>" +
+        "Est. annual cash flow: <strong>" + money(annualCash) + "/yr</strong><br>" +
         "Est. cash flow over " + years + " years (no appreciation modeled): <strong>" + money(rentCashTotal) + "</strong><br>" +
-        (annualCash >= 0
+        (monthlyCash >= 0
           ? "Renting may produce positive cash flow in this model - still weigh management, vacancy, and risk."
           : "Renting looks negative cash flow here - selling (or raising rent/cutting costs) may fit better.") +
         "<br><span class='muted'>Ignores appreciation, tax, capex spikes, and opportunity cost. Educational only.</span>"

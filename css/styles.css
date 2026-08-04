@@ -241,6 +241,23 @@ section { padding: 3rem 0; }
   padding: 1.5rem; margin-bottom: 1.5rem;
 }
 .tool-panel h3 { margin-bottom: 1rem; }
+.tool-fieldset {
+  border: 1px solid rgba(230, 0, 126, 0.35);
+  border-radius: 12px;
+  padding: 1rem 1rem 0.25rem;
+  margin: 0 0 1.15rem;
+  background: rgba(230, 0, 126, 0.05);
+}
+.tool-fieldset legend {
+  padding: 0 0.55rem;
+  color: var(--magenta-soft);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.tool-fieldset .grid-2 { margin-bottom: 0.75rem; }
+.tool-hint { color: var(--gray-dim); font-size: 0.85rem; margin: -0.25rem 0 0.85rem; }
 .tool-result {
   margin-top: 1rem; padding: 1rem; border-radius: 8px;
   background: rgba(230,0,126,0.12); border: 1px solid var(--border);

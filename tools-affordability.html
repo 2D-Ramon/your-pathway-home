@@ -67,12 +67,12 @@
     <form id="afford-form" class="form">
       <div class="grid-2">
         <label>Gross annual household income ($)<input id="gross-income" type="number" value="90000" min="0" step="1000" /></label>
-        <label>Other monthly debts ($)<input id="monthly-debts" type="number" value="400" min="0" step="50" /></label>
+        <label>Other monthly debts ($)<span class="tool-hint">Car, student loans, credit cards, etc. NOT rent or utilities.</span><input id="monthly-debts" type="number" value="400" min="0" step="50" /></label>
         <label>Target DTI for housing (%)<input id="dti-pct" type="number" value="36" min="1" max="55" step="1" /></label>
         <label>Interest rate (%)<input id="aff-rate" type="number" value="6.5" min="0" step="0.125" /></label>
         <label>Loan term (years)<input id="aff-years" type="number" value="30" min="1" max="40" /></label>
-        <label>Down payment (%)<input id="aff-down" type="number" value="5" min="0" max="100" step="0.5" /></label>
-        <label>Est. taxes + ins + HOA / mo ($)<input id="aff-tih" type="number" value="400" min="0" step="25" /></label>
+        <label>Down payment (%)<span class="tool-hint">At 20% or higher, this model estimates $0 PMI (no private mortgage insurance).</span><input id="aff-down" type="number" value="5" min="0" max="100" step="0.5" /></label>
+        <label>Est. taxes + insurance + HOA / mo ($)<input id="aff-tih" type="number" value="400" min="0" step="25" /></label>
       </div>
       <button class="btn btn-primary" type="submit">Estimate</button>
     </form>

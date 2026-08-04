@@ -59,7 +59,7 @@
   <main id="main"><section class="page-hero"><div class="container">
   <span class="badge">Buyer tools</span>
   <h1>Closing costs + buyer estimator</h1>
-  <p class="lead">Plain English categories plus a rough cash-to-close estimator. Not a title or lender quote.</p>
+  <p class="lead">Common cost categories plus a rough cash-to-close estimator. Not a title or lender quote.</p>
   <p><a class="btn btn-ghost" href="tools.html#buyers">All buyer tools</a></p>
 </div></section>
 <section><div class="container">
@@ -70,7 +70,10 @@
         <label>Home price ($)<input id="bc-price" type="number" value="300000" min="0" step="1000" /></label>
         <label>Loan as % of price (LTV)<input id="bc-ltv" type="number" value="95" min="0" max="100" step="0.5" /></label>
         <label>Est. closing fees (% of price)<input id="bc-close-pct" type="number" value="2.5" min="0" step="0.1" /></label>
-        <label>Prepaids / escrows ($)<input id="bc-prepaid" type="number" value="2500" min="0" step="100" /></label>
+        <label>Property taxes prepaid / escrow ($)<input id="bc-taxes" type="number" value="1200" min="0" step="50" /></label>
+        <label>Homeowners insurance prepaid / escrow ($)<input id="bc-ins" type="number" value="800" min="0" step="50" /></label>
+        <label>HOA dues due at closing ($)<input id="bc-hoa" type="number" value="0" min="0" step="25" /></label>
+        <label>Inspections ($)<input id="bc-inspections" type="number" value="400" min="0" step="25" /></label>
         <label>Other cash needs ($)<input id="bc-other" type="number" value="500" min="0" step="50" /></label>
       </div>
       <button class="btn btn-primary" type="submit">Estimate</button>
@@ -84,6 +87,8 @@
       <li>Lender fees (origination, appraisal, credit report)</li>
       <li>Title and escrow / closing fees</li>
       <li>Prepaid taxes and insurance</li>
+      <li>HOA transfer or dues due at closing</li>
+      <li>Inspections (home, optional specialty)</li>
       <li>Commissions (negotiated - often seller-paid, but terms vary)</li>
       <li>Prorations (taxes, HOA, rents when applicable)</li>
     </ul>

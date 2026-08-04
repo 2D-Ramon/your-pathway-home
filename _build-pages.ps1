@@ -208,7 +208,7 @@ $homeBody = @'
       <a class="card" href="search.html"><h3>Home search</h3><p>Browse homes for sale via Lofty / MLSOK-powered search, or send Tudy your criteria.</p></a>
       <a class="card" href="tools.html"><h3>Free tools</h3><p>Mortgage calculator, checklists, seller net sheet estimator, and more.</p></a>
       <a class="card" href="homestead.html"><h3>Homestead</h3><p>How to apply + official county links (Tulsa and neighboring counties).</p></a>
-      <a class="card" href="first-time-buyers.html"><h3>First-time buyers</h3><p>Plain-English hub: glossary, readiness checklist, and next steps.</p></a>
+      <a class="card" href="first-time-buyers.html"><h3>First-time buyers</h3><p>Glossary starters, readiness checklist, and next steps.</p></a>
     </div>
   </div>
 </section>
@@ -354,7 +354,7 @@ $tools = @'
 
 <section id="buyers"><div class="container">
   <h2 class="section-title">For buyers</h2>
-  <p class="section-sub">Calculators, checklists, and plain-English guides from first search to offer.</p>
+  <p class="section-sub">Calculators, checklists, and guides from first search to offer.</p>
   <div class="grid-3">
     <a class="card" href="tools-mortgage.html"><h3>Mortgage calculator</h3><p>Estimate P&amp;I, taxes, insurance, and HOA.</p></a>
     <a class="card" href="tools-affordability.html"><h3>How much home can I afford?</h3><p>Income, debts, and DTI-based price range.</p></a>
@@ -366,7 +366,7 @@ $tools = @'
     <a class="card" href="guides-offer-strategy.html"><h3>Offer strategy guide</h3><p>Earnest money, contingencies, competition.</p></a>
     <a class="card" href="resources-schools.html"><h3>Schools &amp; districts hub</h3><p>Tulsa metro district and research links.</p></a>
     <a class="card" href="resources-commute.html"><h3>Commute &amp; neighborhood fit</h3><p>How to choose an area that fits your life.</p></a>
-    <a class="card" href="guides-loan-programs.html"><h3>VA / FHA / USDA</h3><p>Plain-English loan program overview.</p></a>
+    <a class="card" href="guides-loan-programs.html"><h3>VA / FHA / USDA</h3><p>Loan program overview for Oklahoma buyers.</p></a>
     <a class="card" href="first-time-buyers.html"><h3>First-time buyer hub</h3><p>Glossary starters and next steps.</p></a>
   </div>
 </div></section>
@@ -571,7 +571,7 @@ $toolClosing = @'
 <section class="page-hero"><div class="container">
   <span class="badge">Buyer tools</span>
   <h1>Closing costs + buyer estimator</h1>
-  <p class="lead">Plain English categories plus a rough cash-to-close estimator. Not a title or lender quote.</p>
+  <p class="lead">Common cost categories plus a rough cash-to-close estimator. Not a title or lender quote.</p>
   <p><a class="btn btn-ghost" href="tools.html#buyers">All buyer tools</a></p>
 </div></section>
 <section><div class="container">
@@ -582,7 +582,10 @@ $toolClosing = @'
         <label>Home price ($)<input id="bc-price" type="number" value="300000" min="0" step="1000" /></label>
         <label>Loan as % of price (LTV)<input id="bc-ltv" type="number" value="95" min="0" max="100" step="0.5" /></label>
         <label>Est. closing fees (% of price)<input id="bc-close-pct" type="number" value="2.5" min="0" step="0.1" /></label>
-        <label>Prepaids / escrows ($)<input id="bc-prepaid" type="number" value="2500" min="0" step="100" /></label>
+        <label>Property taxes prepaid / escrow ($)<input id="bc-taxes" type="number" value="1200" min="0" step="50" /></label>
+        <label>Homeowners insurance prepaid / escrow ($)<input id="bc-ins" type="number" value="800" min="0" step="50" /></label>
+        <label>HOA dues due at closing ($)<input id="bc-hoa" type="number" value="0" min="0" step="25" /></label>
+        <label>Inspections ($)<input id="bc-inspections" type="number" value="400" min="0" step="25" /></label>
         <label>Other cash needs ($)<input id="bc-other" type="number" value="500" min="0" step="50" /></label>
       </div>
       <button class="btn btn-primary" type="submit">Estimate</button>
@@ -596,6 +599,8 @@ $toolClosing = @'
       <li>Lender fees (origination, appraisal, credit report)</li>
       <li>Title and escrow / closing fees</li>
       <li>Prepaid taxes and insurance</li>
+      <li>HOA transfer or dues due at closing</li>
+      <li>Inspections (home, optional specialty)</li>
       <li>Commissions (negotiated - often seller-paid, but terms vary)</li>
       <li>Prorations (taxes, HOA, rents when applicable)</li>
     </ul>
@@ -728,7 +733,7 @@ Write-Page 'faq.html' 'FAQ' 'index' @'
 '@
 
 Write-Page 'first-time-buyers.html' 'First-Time Buyers' 'buy' @'
-<section class="page-hero"><div class="container"><span class="badge">Buyers</span><h1>First-time buyer hub</h1><p class="lead">Plain English. No mystery jargon.</p></div></section>
+<section class="page-hero"><div class="container"><span class="badge">Buyers</span><h1>First-time buyer hub</h1><p class="lead">Clear explanations. No mystery jargon.</p></div></section>
 <section><div class="container prose">
   <h2>Glossary (quick)</h2>
   <p><strong>Pre-approval</strong> - lender's early green light based on your finances.<br/>

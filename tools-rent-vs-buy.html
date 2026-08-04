@@ -59,28 +59,36 @@
   <main id="main"><section class="page-hero"><div class="container">
   <span class="badge">Buyer tools</span>
   <h1>Rent vs buy calculator</h1>
-  <p class="lead">A simplified multi-year comparison. Great conversation starter - not a final decision model.</p>
+  <p class="lead">A simplified multi-year comparison. Fields are split into <strong>Renting</strong> vs <strong>Home purchase</strong>. Not a final decision model.</p>
   <p><a class="btn btn-ghost" href="tools.html#buyers">All buyer tools</a></p>
 </div></section>
 <section><div class="container">
   <div class="tool-panel">
     <form id="rentbuy-form" class="form">
-      <div class="grid-2">
-        <label>Current rent / mo ($)<input id="rb-rent" type="number" value="1600" min="0" step="50" /></label>
-        <label>Rent inflation / yr (%)<input id="rb-rent-infl" type="number" value="3" min="0" step="0.25" /></label>
-        <label>Home price ($)<input id="rb-price" type="number" value="300000" min="0" step="1000" /></label>
-        <label>Down payment (%)<input id="rb-down" type="number" value="5" min="0" max="100" step="0.5" /></label>
-        <label>Interest rate (%)<input id="rb-rate" type="number" value="6.5" min="0" step="0.125" /></label>
-        <label>Loan term (years)<input id="rb-loan-years" type="number" value="30" min="1" max="40" /></label>
-        <label>Property tax / mo ($)<input id="rb-tax" type="number" value="250" min="0" /></label>
-        <label>Insurance / mo ($)<input id="rb-ins" type="number" value="150" min="0" /></label>
-        <label>Maintenance / mo ($)<input id="rb-maint" type="number" value="200" min="0" /></label>
-        <label>HOA / mo ($)<input id="rb-hoa" type="number" value="0" min="0" /></label>
-        <label>Home appreciation / yr (%)<input id="rb-appr" type="number" value="2.5" step="0.25" /></label>
-        <label>Years you will stay<input id="rb-years" type="number" value="5" min="1" max="30" /></label>
-        <label>Selling costs (% of future value)<input id="rb-sell-cost" type="number" value="7" min="0" step="0.5" /></label>
-      </div>
-      <button class="btn btn-primary" type="submit">Compare</button>
+      <fieldset class="tool-fieldset">
+        <legend>Renting (stay a renter)</legend>
+        <div class="grid-2">
+          <label>Current rent / mo ($)<input id="rb-rent" type="number" value="1600" min="0" step="50" /></label>
+          <label>Expected rent increases / yr (%)<input id="rb-rent-infl" type="number" value="3" min="0" step="0.25" /></label>
+        </div>
+      </fieldset>
+      <fieldset class="tool-fieldset">
+        <legend>Home purchase (if you buy)</legend>
+        <div class="grid-2">
+          <label>Home purchase price ($)<input id="rb-price" type="number" value="300000" min="0" step="1000" /></label>
+          <label>Down payment (%)<input id="rb-down" type="number" value="5" min="0" max="100" step="0.5" /></label>
+          <label>Mortgage interest rate (%)<input id="rb-rate" type="number" value="6.5" min="0" step="0.125" /></label>
+          <label>Loan term (years)<input id="rb-loan-years" type="number" value="30" min="1" max="40" /></label>
+          <label>Property tax / mo ($)<input id="rb-tax" type="number" value="250" min="0" /></label>
+          <label>Homeowners insurance / mo ($)<input id="rb-ins" type="number" value="150" min="0" /></label>
+          <label>Maintenance / mo ($)<input id="rb-maint" type="number" value="200" min="0" /></label>
+          <label>HOA / mo ($)<input id="rb-hoa" type="number" value="0" min="0" /></label>
+          <label>Home appreciation / yr (%)<input id="rb-appr" type="number" value="2.5" step="0.25" /></label>
+          <label>Years you plan to stay<input id="rb-years" type="number" value="5" min="1" max="30" /></label>
+          <label>Selling costs when you sell later (% of future value)<input id="rb-sell-cost" type="number" value="7" min="0" step="0.5" /></label>
+        </div>
+      </fieldset>
+      <button class="btn btn-primary" type="submit">Compare renting vs buying</button>
     </form>
     <div class="tool-result" id="rentbuy-result">Enter numbers and compare.</div>
     <div class="disclaimer">Educational only - not lender, tax, legal, appraisal, or investment advice. Rules change. Verify with licensed professionals and official sources.</div>

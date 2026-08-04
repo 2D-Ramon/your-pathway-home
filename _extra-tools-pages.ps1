@@ -18,12 +18,12 @@ Write-Page 'tools-affordability.html' 'Affordability Calculator' 'tools-affordab
     <form id="afford-form" class="form">
       <div class="grid-2">
         <label>Gross annual household income (`$)<input id="gross-income" type="number" value="90000" min="0" step="1000" /></label>
-        <label>Other monthly debts (`$)<input id="monthly-debts" type="number" value="400" min="0" step="50" /></label>
+        <label>Other monthly debts (`$)<span class="tool-hint">Car, student loans, credit cards, etc. NOT rent or utilities.</span><input id="monthly-debts" type="number" value="400" min="0" step="50" /></label>
         <label>Target DTI for housing (%)<input id="dti-pct" type="number" value="36" min="1" max="55" step="1" /></label>
         <label>Interest rate (%)<input id="aff-rate" type="number" value="6.5" min="0" step="0.125" /></label>
         <label>Loan term (years)<input id="aff-years" type="number" value="30" min="1" max="40" /></label>
-        <label>Down payment (%)<input id="aff-down" type="number" value="5" min="0" max="100" step="0.5" /></label>
-        <label>Est. taxes + ins + HOA / mo (`$)<input id="aff-tih" type="number" value="400" min="0" step="25" /></label>
+        <label>Down payment (%)<span class="tool-hint">At 20% or higher, this model estimates `$0 PMI (no private mortgage insurance).</span><input id="aff-down" type="number" value="5" min="0" max="100" step="0.5" /></label>
+        <label>Est. taxes + insurance + HOA / mo (`$)<input id="aff-tih" type="number" value="400" min="0" step="25" /></label>
       </div>
       <button class="btn btn-primary" type="submit">Estimate</button>
     </form>
@@ -63,28 +63,36 @@ Write-Page 'tools-rent-vs-buy.html' 'Rent vs Buy' 'tools-rent-vs-buy' @"
 <section class="page-hero"><div class="container">
   <span class="badge">Buyer tools</span>
   <h1>Rent vs buy calculator</h1>
-  <p class="lead">A simplified multi-year comparison. Great conversation starter - not a final decision model.</p>
+  <p class="lead">A simplified multi-year comparison. Fields are split into <strong>Renting</strong> vs <strong>Home purchase</strong>. Not a final decision model.</p>
   <p><a class="btn btn-ghost" href="tools.html#buyers">All buyer tools</a></p>
 </div></section>
 <section><div class="container">
   <div class="tool-panel">
     <form id="rentbuy-form" class="form">
-      <div class="grid-2">
-        <label>Current rent / mo (`$)<input id="rb-rent" type="number" value="1600" min="0" step="50" /></label>
-        <label>Rent inflation / yr (%)<input id="rb-rent-infl" type="number" value="3" min="0" step="0.25" /></label>
-        <label>Home price (`$)<input id="rb-price" type="number" value="300000" min="0" step="1000" /></label>
-        <label>Down payment (%)<input id="rb-down" type="number" value="5" min="0" max="100" step="0.5" /></label>
-        <label>Interest rate (%)<input id="rb-rate" type="number" value="6.5" min="0" step="0.125" /></label>
-        <label>Loan term (years)<input id="rb-loan-years" type="number" value="30" min="1" max="40" /></label>
-        <label>Property tax / mo (`$)<input id="rb-tax" type="number" value="250" min="0" /></label>
-        <label>Insurance / mo (`$)<input id="rb-ins" type="number" value="150" min="0" /></label>
-        <label>Maintenance / mo (`$)<input id="rb-maint" type="number" value="200" min="0" /></label>
-        <label>HOA / mo (`$)<input id="rb-hoa" type="number" value="0" min="0" /></label>
-        <label>Home appreciation / yr (%)<input id="rb-appr" type="number" value="2.5" step="0.25" /></label>
-        <label>Years you will stay<input id="rb-years" type="number" value="5" min="1" max="30" /></label>
-        <label>Selling costs (% of future value)<input id="rb-sell-cost" type="number" value="7" min="0" step="0.5" /></label>
-      </div>
-      <button class="btn btn-primary" type="submit">Compare</button>
+      <fieldset class="tool-fieldset">
+        <legend>Renting (stay a renter)</legend>
+        <div class="grid-2">
+          <label>Current rent / mo (`$)<input id="rb-rent" type="number" value="1600" min="0" step="50" /></label>
+          <label>Expected rent increases / yr (%)<input id="rb-rent-infl" type="number" value="3" min="0" step="0.25" /></label>
+        </div>
+      </fieldset>
+      <fieldset class="tool-fieldset">
+        <legend>Home purchase (if you buy)</legend>
+        <div class="grid-2">
+          <label>Home purchase price (`$)<input id="rb-price" type="number" value="300000" min="0" step="1000" /></label>
+          <label>Down payment (%)<input id="rb-down" type="number" value="5" min="0" max="100" step="0.5" /></label>
+          <label>Mortgage interest rate (%)<input id="rb-rate" type="number" value="6.5" min="0" step="0.125" /></label>
+          <label>Loan term (years)<input id="rb-loan-years" type="number" value="30" min="1" max="40" /></label>
+          <label>Property tax / mo (`$)<input id="rb-tax" type="number" value="250" min="0" /></label>
+          <label>Homeowners insurance / mo (`$)<input id="rb-ins" type="number" value="150" min="0" /></label>
+          <label>Maintenance / mo (`$)<input id="rb-maint" type="number" value="200" min="0" /></label>
+          <label>HOA / mo (`$)<input id="rb-hoa" type="number" value="0" min="0" /></label>
+          <label>Home appreciation / yr (%)<input id="rb-appr" type="number" value="2.5" step="0.25" /></label>
+          <label>Years you plan to stay<input id="rb-years" type="number" value="5" min="1" max="30" /></label>
+          <label>Selling costs when you sell later (% of future value)<input id="rb-sell-cost" type="number" value="7" min="0" step="0.5" /></label>
+        </div>
+      </fieldset>
+      <button class="btn btn-primary" type="submit">Compare renting vs buying</button>
     </form>
     <div class="tool-result" id="rentbuy-result">Enter numbers and compare.</div>
     $edu
@@ -127,7 +135,7 @@ Write-Page 'tools-preapproval.html' 'Pre-Approval Checklist' 'tools-preapproval'
 Write-Page 'guides-offer-strategy.html' 'Offer Strategy' 'guides-offer-strategy' @"
 <section class="page-hero"><div class="container">
   <span class="badge">Buyer guides</span>
-  <h1>Offer strategy (plain English)</h1>
+  <h1>Offer strategy</h1>
   <p class="lead">Price is only one lever. Terms, timing, and risk allocation matter just as much.</p>
   <p><a class="btn btn-ghost" href="tools.html#buyers">All buyer tools</a></p>
 </div></section>
@@ -350,22 +358,33 @@ Write-Page 'tools-sell-or-rent.html' 'Sell or Rent' 'tools-sell-or-rent' @"
 <section class="page-hero"><div class="container">
   <span class="badge">Seller tools</span>
   <h1>Sell or rent?</h1>
-  <p class="lead">Rough cash comparison plus questions that numbers alone cannot answer.</p>
+  <p class="lead">For owners deciding whether to <strong>sell now</strong> or <strong>keep the home and rent it out</strong>. Fields are split by scenario.</p>
   <p><a class="btn btn-ghost" href="tools.html#sellers">All seller tools</a></p>
 </div></section>
 <section><div class="container">
   <div class="tool-panel">
     <form id="sellrent-form" class="form">
-      <div class="grid-2">
-        <label>Est. market value (`$)<input id="sr-value" type="number" value="300000" min="0" step="1000" /></label>
-        <label>Mortgage balance (`$)<input id="sr-mortgage-bal" type="number" value="180000" min="0" step="1000" /></label>
-        <label>Selling costs (% of value)<input id="sr-sell-cost" type="number" value="7" min="0" step="0.5" /></label>
-        <label>Expected rent / mo (`$)<input id="sr-rent" type="number" value="1900" min="0" step="50" /></label>
-        <label>Landlord expenses / mo (`$)<input id="sr-exp" type="number" value="350" min="0" step="25" /></label>
-        <label>PITI / HOA if renting / mo (`$)<input id="sr-pitia" type="number" value="1600" min="0" step="25" /></label>
-        <label>Years to compare<input id="sr-years" type="number" value="5" min="1" max="30" /></label>
-      </div>
-      <button class="btn btn-primary" type="submit">Compare</button>
+      <fieldset class="tool-fieldset">
+        <legend>If you sell</legend>
+        <div class="grid-2">
+          <label>Est. market value / sale price (`$)<input id="sr-value" type="number" value="300000" min="0" step="1000" /></label>
+          <label>Mortgage payoff balance (`$)<input id="sr-mortgage-bal" type="number" value="180000" min="0" step="1000" /></label>
+          <label>Selling costs (% of sale price)<span class="tool-hint">Commission, title, concessions, etc.</span><input id="sr-sell-cost" type="number" value="7" min="0" step="0.5" /></label>
+        </div>
+      </fieldset>
+      <fieldset class="tool-fieldset">
+        <legend>If you rent (keep the home as a rental)</legend>
+        <div class="grid-2">
+          <label>Expected rent / mo (`$)<input id="sr-rent" type="number" value="1900" min="0" step="50" /></label>
+          <label>Vacancy allowance (%)<span class="tool-hint">Default 10% for empty months / turnover.</span><input id="sr-vacancy" type="number" value="10" min="0" max="50" step="1" /></label>
+          <label>Property management / mo (`$)<span class="tool-hint">Defaults to 10% of expected rent. Uncheck below to type your own amount.</span><input id="sr-mgmt" type="number" value="190" min="0" step="10" /></label>
+          <label style="display:flex;align-items:center;gap:0.5rem;flex-direction:row"><input id="sr-mgmt-auto" type="checkbox" checked style="width:auto;margin:0" /> Auto-set management to 10% of rent</label>
+          <label>Other landlord expenses / mo (`$)<span class="tool-hint">Repairs, reserves, utilities you pay, etc. (not PITI)</span><input id="sr-exp" type="number" value="350" min="0" step="25" /></label>
+          <label>PITI + HOA / mo while renting (`$)<span class="tool-hint">Principal, interest, taxes, insurance, HOA if you keep the loan.</span><input id="sr-pitia" type="number" value="1600" min="0" step="25" /></label>
+          <label>Years to compare<input id="sr-years" type="number" value="5" min="1" max="30" /></label>
+        </div>
+      </fieldset>
+      <button class="btn btn-primary" type="submit">Compare sell vs rent</button>
     </form>
     <div class="tool-result" id="sellrent-result">Enter numbers and compare.</div>
   </div>
@@ -532,7 +551,7 @@ Write-Page 'glossary.html' 'Real Estate Glossary' 'glossary' @"
 <section class="page-hero"><div class="container">
   <span class="badge">Reference</span>
   <h1>Real estate glossary (A–Z)</h1>
-  <p class="lead">Plain-English definitions. Not legal definitions - contracts and statutes control.</p>
+  <p class="lead">Clear definitions for common terms. Not legal definitions - contracts and statutes control.</p>
   <p><a class="btn btn-ghost" href="tools.html#general">All guides</a></p>
 </div></section>
 <section><div class="container prose">
@@ -772,24 +791,76 @@ Write-Page 'espanol.html' 'Espanol' 'espanol' @"
 Write-Page 'guides-loan-programs.html' 'VA FHA USDA Loans' 'guides-loan-programs' @"
 <section class="page-hero"><div class="container">
   <span class="badge">Buyer guides</span>
-  <h1>VA, FHA &amp; USDA - plain English</h1>
-  <p class="lead">Government-backed options many Oklahoma buyers use. Product rules change - confirm with a licensed lender.</p>
+  <h1>VA, FHA &amp; USDA loans</h1>
+  <p class="lead">Government-backed options many Oklahoma buyers use. Product rules, fees, and overlays change - always confirm with a licensed lender.</p>
   <p><a class="btn btn-ghost" href="tools.html#buyers">All buyer tools</a> <a class="btn btn-ghost" href="tools-mortgage.html">Mortgage calculator</a></p>
 </div></section>
 <section><div class="container prose">
-  <h2>FHA</h2>
-  <p><strong>Best for:</strong> Buyers who need flexible credit/down-payment guidelines.<br/>
-  <strong>Watch for:</strong> Mortgage insurance, property condition standards, appraisal requirements.</p>
-  <h2>VA</h2>
-  <p><strong>Best for:</strong> Eligible veterans, service members, and some surviving spouses - often `$0` down and no monthly PMI.<br/>
-  <strong>Watch for:</strong> Funding fee (may be financed), entitlement rules, VA Minimum Property Requirements.</p>
-  <h2>USDA</h2>
-  <p><strong>Best for:</strong> Eligible rural/suburban locations and income limits - often `$0` down.<br/>
-  <strong>Watch for:</strong> Property must map as eligible; income caps; not available in many urban cores.</p>
-  <h2>Conventional (quick contrast)</h2>
-  <p>Not government-insured the same way; often preferred if you have stronger credit and down payment. PMI usually applies under 20% down.</p>
+  <h2>FHA loans</h2>
+  <p><strong>What it is:</strong> A mortgage insured by the Federal Housing Administration. Lenders take less risk, so guidelines can be more flexible for many first-time and credit-rebuilding buyers.</p>
+  <p><strong>Often a fit when:</strong></p>
+  <ul>
+    <li>You need a lower down payment than many conventional programs</li>
+    <li>Credit or recent financial history is not perfect, but you can document income and reserves</li>
+    <li>You will occupy the home as a primary residence (investment use is restricted)</li>
+  </ul>
+  <p><strong>Key costs &amp; rules to understand:</strong></p>
+  <ul>
+    <li><strong>Upfront and monthly mortgage insurance (MIP)</strong> - budget for this; it is not the same as homeowners insurance</li>
+    <li><strong>Minimum down payment</strong> - commonly discussed around 3.5% for many borrowers (confirm current rules and your credit tier)</li>
+    <li><strong>Property condition</strong> - appraisals can require repairs; fixer-uppers may not pass easily</li>
+    <li><strong>Debt-to-income and credit</strong> - more flexible than some conventional options, but still underwritten carefully</li>
+    <li><strong>Loan limits</strong> - FHA has area loan limits; higher-priced homes may need another product</li>
+  </ul>
+  <p><strong>Seller / offer notes:</strong> Some sellers worry about FHA appraisals and timelines. A strong pre-approval, clean offer terms, and realistic inspection expectations help.</p>
+
+  <h2>VA loans</h2>
+  <p><strong>What it is:</strong> A loan program for eligible veterans, active-duty service members, and some surviving spouses. The Department of Veterans Affairs guarantees a portion of the loan for the lender.</p>
+  <p><strong>Often a fit when:</strong></p>
+  <ul>
+    <li>You have VA eligibility / entitlement (Certificate of Eligibility)</li>
+    <li>You want the option of <strong>`$0` down</strong> on a primary residence (when entitlement and price allow)</li>
+    <li>You want competitive rates and <strong>no monthly PMI</strong></li>
+  </ul>
+  <p><strong>Key costs &amp; rules to understand:</strong></p>
+  <ul>
+    <li><strong>VA funding fee</strong> - often financed into the loan; amount depends on down payment, first-use vs subsequent use, and disability exemption status</li>
+    <li><strong>Residual income and underwriting</strong> - VA looks at remaining income after debts and living expenses, not only DTI</li>
+    <li><strong>VA Minimum Property Requirements (MPRs)</strong> - safety/soundness items can require repairs before closing</li>
+    <li><strong>Occupancy</strong> - generally primary residence; rules differ from pure investment purchases</li>
+    <li><strong>Entitlement / restoration</strong> - prior VA loans can affect how much entitlement is available for the next purchase</li>
+  </ul>
+  <p><strong>Seller / offer notes:</strong> VA is a strong buyer tool. Educate listing agents who are less familiar - funding fee and MPRs are normal, not automatic deal-killers.</p>
+
+  <h2>USDA loans</h2>
+  <p><strong>What it is:</strong> A USDA Rural Development program designed for eligible buyers in qualifying geographic areas, often with `$0` down when income and property rules are met.</p>
+  <p><strong>Often a fit when:</strong></p>
+  <ul>
+    <li>The property maps inside a <strong>USDA-eligible area</strong> (many suburban/rural edges; fewer dense urban cores)</li>
+    <li>Household income is within program limits for the county and household size</li>
+    <li>You want a low or zero down-payment path as a primary-residence buyer</li>
+  </ul>
+  <p><strong>Key costs &amp; rules to understand:</strong></p>
+  <ul>
+    <li><strong>Geographic eligibility first</strong> - if the address does not qualify, the program is off the table</li>
+    <li><strong>Income limits</strong> - moderate-income focused; higher earners may not qualify even with great credit</li>
+    <li><strong>Guarantee fees</strong> - USDA has its own fee structure (not the same as FHA MIP or conventional PMI)</li>
+    <li><strong>Property type &amp; condition</strong> - typically modest residential properties; unique/complex properties can be harder</li>
+    <li><strong>Timelines</strong> - additional program steps can make closings longer than a simple conventional file</li>
+  </ul>
+  <p><strong>Seller / offer notes:</strong> Confirm map eligibility early so you do not write an offer that cannot fund under USDA.</p>
+
+  <h2>Conventional loans (quick contrast)</h2>
+  <p>Conventional loans are not insured by FHA/VA/USDA the same way. They often fit buyers with stronger credit, stable documentation, and enough down payment. <strong>PMI usually applies under 20% down</strong> and can often be removed later when equity and loan rules allow. HomeReady / Home Possible and similar products can help lower-down conventional buyers with education/income guidelines.</p>
+
+  <h2>How to choose</h2>
+  <ul>
+    <li>Start with eligibility: VA service history? USDA map + income? Or conventional/FHA credit and down payment?</li>
+    <li>Compare <strong>cash to close</strong>, <strong>monthly payment including MI/MIP/fees</strong>, and <strong>property condition</strong> risk</li>
+    <li>Get a full pre-approval before touring seriously - program choice can change what you can buy</li>
+  </ul>
   <h2>Next step</h2>
-  <p>Get pre-approved before you shop seriously. Text Tudy for local lender introductions that fit your profile.</p>
+  <p>Text Tudy for local lender introductions that fit your profile. Bring income docs and a target price range for a faster answer.</p>
   $edu
   $cta
 </div></section>
