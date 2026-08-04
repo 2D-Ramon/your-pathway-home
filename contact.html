@@ -69,41 +69,20 @@
   </div>
   <div class="card">
     <h3>Send a message</h3>
-    <form class="form lead-form" data-thanks="thank-you.html">
-      <label>Name<input name="name" required autocomplete="name" /></label>
-      <label>Phone<input name="phone" type="tel" required autocomplete="tel" /></label>
-      <label>Email<input name="email" type="email" required autocomplete="email" /></label>
-      <label>I'm interested in
-        <select name="interest" id="interest">
-          <option>Buying</option>
-          <option>Selling</option>
-          <option>Both</option>
-          <option>Home valuation</option>
-          <option>Homestead / tax questions</option>
-          <option>Recruiting / career</option>
-          <option>Other</option>
-        </select>
-      </label>
-      <label>Message<textarea name="message" rows="4" required></textarea></label>
-      <div class="hp" aria-hidden="true"><label>Company website<input name="company_website" tabindex="-1" autocomplete="off" /></label></div>
-      <button class="btn btn-primary" type="submit">Submit</button>
-      <p class="muted">Spam protection: honeypot field (no reCAPTCHA). Forms open your email client to tvaldez@axenrealty.com until Lofty form URLs are connected - see lofty-setup.html.</p>
-    </form>
+    <p class="muted" style="margin-bottom:1rem">
+      Click below to open my secure <strong>AXEN / Lofty</strong> contact form.
+      When you submit there, your info goes into my CRM so I can follow up quickly.
+    </p>
+    <p>
+      <a class="btn btn-primary btn-lg" href="https://tudyvaldez.axenrealty.com/contact-lead" target="_blank" rel="noopener">Open contact form</a>
+    </p>
+    <p class="muted" style="margin-top:1rem">Prefer not to use a form? Text or call - that works just as well.</p>
+    <p style="margin-top:0.75rem">
+      <a class="btn btn-ghost" href="sms:9188133771">Text 918-813-3771</a>
+      <a class="btn btn-ghost" href="tel:9188133771">Call</a>
+    </p>
   </div>
-</div></section>
-<script>
-(function(){
-  var q = new URLSearchParams(location.search).get("interest");
-  if (q) {
-    var s = document.getElementById("interest");
-    if (s) {
-      for (var i=0;i<s.options.length;i++) {
-        if (s.options[i].text.toLowerCase().indexOf(q.toLowerCase()) >= 0) { s.selectedIndex = i; break; }
-      }
-    }
-  }
-})();
-</script>  </main>
+</div></section>  </main>
   <footer class="site-footer">
     <div class="container footer-grid">
       <div>

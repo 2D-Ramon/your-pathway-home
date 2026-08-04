@@ -224,26 +224,10 @@ $homeBody = @'
       <a class="btn btn-ghost" href="contact.html">Contact form</a></p>
     </div>
     <div class="card">
-      <h3>Quick lead form</h3>
-      <form class="form lead-form" data-thanks="thank-you.html">
-        <label>Name<input name="name" required autocomplete="name" /></label>
-        <label>Phone<input name="phone" type="tel" required autocomplete="tel" /></label>
-        <label>Email<input name="email" type="email" required autocomplete="email" /></label>
-        <label>I'm interested in
-          <select name="interest">
-            <option>Buying</option>
-            <option>Selling</option>
-            <option>Both</option>
-            <option>Home valuation</option>
-            <option>Recruiting / career</option>
-            <option>Other</option>
-          </select>
-        </label>
-        <label>Message<textarea name="message" rows="3" placeholder="Area, budget, timing..."></textarea></label>
-        <div class="hp" aria-hidden="true"><label>Company website<input name="company_website" tabindex="-1" autocomplete="off" /></label></div>
-        <button class="btn btn-primary" type="submit">Send to Tudy</button>
-        <p class="muted">By submitting, you agree we may contact you about real estate services. No spam.</p>
-      </form>
+      <h3>Send a message</h3>
+      <p class="muted" style="margin-bottom:1rem">Use my secure AXEN / Lofty form so your info goes straight into my CRM - I'll follow up personally.</p>
+      <p><a class="btn btn-primary btn-lg" href="https://tudyvaldez.axenrealty.com/contact-lead" target="_blank" rel="noopener">Open contact form</a></p>
+      <p class="muted" style="margin-top:0.85rem">Or <a href="sms:9188133771">text 918-813-3771</a> anytime.</p>
     </div>
   </div>
 </section>
@@ -336,16 +320,11 @@ $search = @'
 
   <div class="tool-panel" style="margin-top:1.5rem">
     <h3>Prefer a personal match?</h3>
-    <p class="muted" style="margin-bottom:1rem">Send your must-haves and Tudy will pull options and follow up - great if you want guidance, not only a map.</p>
-    <form class="form lead-form" data-thanks="thank-you.html">
-      <label>Name<input name="name" required /></label>
-      <label>Phone<input name="phone" type="tel" required /></label>
-      <label>Email<input name="email" type="email" required /></label>
-      <input type="hidden" name="interest" value="Home search / listings" />
-      <label>Areas / cities<textarea name="message" rows="4" required placeholder="e.g. Midtown Tulsa, Bixby, under $350k, 3+ bed, garage..."></textarea></label>
-      <div class="hp" aria-hidden="true"><label>Company website<input name="company_website" tabindex="-1" autocomplete="off" /></label></div>
-      <button class="btn btn-primary" type="submit">Send my search request</button>
-    </form>
+    <p class="muted" style="margin-bottom:1rem">Send your must-haves and Tudy will pull options and follow up - great if you want guidance, not only a map. Opens my secure AXEN / Lofty form so the lead lands in my CRM.</p>
+    <p>
+      <a class="btn btn-primary" href="https://tudyvaldez.axenrealty.com/contact-lead" target="_blank" rel="noopener">Send my search request</a>
+      <a class="btn btn-ghost" href="sms:9188133771">Or text 918-813-3771</a>
+    </p>
   </div>
   <div class="grid-2">
     <div class="card"><h3>Buyer tools</h3><p>Use the <a href="tools.html">mortgage calculator</a> and <a href="buy.html">buyer process</a> page. Pre-approval questions? <a href="first-time-buyers.html">First-time buyer hub</a>.</p></div>
@@ -604,48 +583,27 @@ $contact = @'
   </div>
   <div class="card">
     <h3>Send a message</h3>
-    <form class="form lead-form" data-thanks="thank-you.html">
-      <label>Name<input name="name" required autocomplete="name" /></label>
-      <label>Phone<input name="phone" type="tel" required autocomplete="tel" /></label>
-      <label>Email<input name="email" type="email" required autocomplete="email" /></label>
-      <label>I'm interested in
-        <select name="interest" id="interest">
-          <option>Buying</option>
-          <option>Selling</option>
-          <option>Both</option>
-          <option>Home valuation</option>
-          <option>Homestead / tax questions</option>
-          <option>Recruiting / career</option>
-          <option>Other</option>
-        </select>
-      </label>
-      <label>Message<textarea name="message" rows="4" required></textarea></label>
-      <div class="hp" aria-hidden="true"><label>Company website<input name="company_website" tabindex="-1" autocomplete="off" /></label></div>
-      <button class="btn btn-primary" type="submit">Submit</button>
-      <p class="muted">Spam protection: honeypot field (no reCAPTCHA). Forms open your email client to tvaldez@axenrealty.com until Lofty form URLs are connected - see lofty-setup.html.</p>
-    </form>
+    <p class="muted" style="margin-bottom:1rem">
+      Click below to open my secure <strong>AXEN / Lofty</strong> contact form.
+      When you submit there, your info goes into my CRM so I can follow up quickly.
+    </p>
+    <p>
+      <a class="btn btn-primary btn-lg" href="https://tudyvaldez.axenrealty.com/contact-lead" target="_blank" rel="noopener">Open contact form</a>
+    </p>
+    <p class="muted" style="margin-top:1rem">Prefer not to use a form? Text or call - that works just as well.</p>
+    <p style="margin-top:0.75rem">
+      <a class="btn btn-ghost" href="sms:9188133771">Text 918-813-3771</a>
+      <a class="btn btn-ghost" href="tel:9188133771">Call</a>
+    </p>
   </div>
 </div></section>
-<script>
-(function(){
-  var q = new URLSearchParams(location.search).get("interest");
-  if (q) {
-    var s = document.getElementById("interest");
-    if (s) {
-      for (var i=0;i<s.options.length;i++) {
-        if (s.options[i].text.toLowerCase().indexOf(q.toLowerCase()) >= 0) { s.selectedIndex = i; break; }
-      }
-    }
-  }
-})();
-</script>
 '@
 Write-Page 'contact.html' 'Contact' 'contact' $contact
 
 $thanks = @'
 <section class="page-hero"><div class="container">
   <h1>Thank you</h1>
-  <p class="lead">Your message is on its way. If your email client opened, hit send - or text me at <a href="sms:9188133771">918-813-3771</a> anytime.</p>
+  <p class="lead">If you just sent a form through Lofty, you're all set - I'll follow up soon. Prefer text? <a href="sms:9188133771">918-813-3771</a>.</p>
   <p><a class="btn btn-primary" href="index.html">Back to home</a> <a class="btn btn-ghost" href="tools.html">Explore tools</a></p>
 </div></section>
 '@
@@ -771,6 +729,7 @@ Write-Page 'bio.html' 'Link in Bio' 'index' @'
   <a class="btn btn-ghost btn-lg" href="buy.html">Buy process</a>
   <a class="btn btn-ghost btn-lg" href="tools.html">Free tools</a>
   <a class="btn btn-ghost btn-lg" href="homestead.html">Homestead help</a>
+  <a class="btn btn-ghost btn-lg" href="https://tudyvaldez.axenrealty.com/contact-lead" target="_blank" rel="noopener">Contact form</a>
   <a class="btn btn-ghost btn-lg" href="sms:9188133771">Text Tudy</a>
   <a class="btn btn-ghost btn-lg" href="tel:9188133771">Call 918-813-3771</a>
   <a class="btn btn-ghost btn-lg" href="about.html">About</a>
@@ -778,25 +737,28 @@ Write-Page 'bio.html' 'Link in Bio' 'index' @'
 '@
 
 Write-Page 'lofty-setup.html' 'Lofty Setup' 'contact' @'
-<section class="page-hero"><div class="container"><h1>Where to look in Lofty</h1><p class="lead">Find Website / IDX / Lead forms / Home valuation so we can wire this free site to your CRM.</p></div></section>
+<section class="page-hero"><div class="container"><h1>Lofty / AXEN connections</h1><p class="lead">What's already wired on this site, and what still lives in Lofty.</p></div></section>
 <section><div class="container prose">
+  <h2>Connected</h2>
+  <ul>
+    <li><strong>Contact / lead form:</strong> <a href="https://tudyvaldez.axenrealty.com/contact-lead" target="_blank" rel="noopener">tudyvaldez.axenrealty.com/contact-lead</a> (used on Contact, Home, and Search)</li>
+    <li><strong>Home search:</strong> <a href="https://tudyvaldez.axenrealty.com/homes-for-sale" target="_blank" rel="noopener">tudyvaldez.axenrealty.com/homes-for-sale</a></li>
+  </ul>
+  <div class="alert"><strong>Note:</strong> Lofty blocks embedding its pages in iframes, so Contact opens the official form in a new tab. That is the reliable way for leads to enter your CRM.</div>
   <h2>Log in</h2>
   <p>Go to <a href="https://lofty.com/" target="_blank" rel="noopener">lofty.com</a> (or your brokerage's Lofty URL) with <strong>tvaldez@axenrealty.com</strong>.</p>
-  <h2>Typical places to check</h2>
+  <h2>Optional next finds</h2>
   <ol>
-    <li><strong>Left sidebar / app switcher</strong> - look for <em>Website</em>, <em>IDX</em>, <em>Marketing</em>, <em>Lead Routes</em>, or <em>Capture</em>.</li>
-    <li><strong>Settings -> Lead Capture / Forms</strong> - create or copy a form share link / embed code.</li>
-    <li><strong>Settings -> Integrations</strong> - webhooks or website widgets.</li>
-    <li><strong>Marketing -> Landing pages</strong> - valuation ("What's my home worth?") pages with a public URL.</li>
-    <li><strong>Website builder</strong> (if enabled) - sometimes IDX search is under a Website product your brokerage must enable.</li>
+    <li><strong>Home valuation</strong> page URL (What's my home worth?)</li>
+    <li><strong>Native form embed code</strong> if Lofty ever provides one that is not a full page (then we can restyle on-site)</li>
+    <li><strong>IDX widget</strong> code for cleaner search branding</li>
   </ol>
-  <h2>What to send me</h2>
+  <h2>What to send me later (optional)</h2>
   <ul>
-    <li>Any <strong>form link</strong> or embed snippet</li>
     <li>Any <strong>home valuation</strong> page URL</li>
-    <li>Whether you see <strong>IDX / listings search</strong> (yes/no + screenshot if possible)</li>
+    <li>Any new <strong>embed snippet</strong> from Lofty support</li>
   </ul>
-  <p>Until those exist, forms on this site use a <strong>mailto</strong> to tvaldez@axenrealty.com (and you can always get texts at 918-813-3771).</p>
+  <p>Call and text still work anytime: <a href="sms:9188133771">918-813-3771</a>.</p>
   <div class="alert"><strong>Broker tip:</strong> Some AXEN agents only get Lofty CRM - not the full website/IDX package. If menus are missing, ask your broker or Lofty support: "Do I have lead forms and IDX on my seat?"</div>
 </div></section>
 '@
