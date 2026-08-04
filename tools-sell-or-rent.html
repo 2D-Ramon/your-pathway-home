@@ -80,7 +80,9 @@
           <label>Vacancy allowance (%)<span class="tool-hint">Default 10% for empty months / turnover.</span><input id="sr-vacancy" type="number" value="10" min="0" max="50" step="1" /></label>
           <label>Property management / mo ($)<span class="tool-hint">Defaults to 10% of expected rent. Uncheck below to type your own amount.</span><input id="sr-mgmt" type="number" value="190" min="0" step="10" /></label>
           <label style="display:flex;align-items:center;gap:0.5rem;flex-direction:row"><input id="sr-mgmt-auto" type="checkbox" checked style="width:auto;margin:0" /> Auto-set management to 10% of rent</label>
-          <label>Other landlord expenses / mo ($)<span class="tool-hint">Repairs, reserves, utilities you pay, etc. (not PITI)</span><input id="sr-exp" type="number" value="350" min="0" step="25" /></label>
+          <label>Maintenance / mo ($)<span class="tool-hint">Defaults to 10% of expected rent (repairs, reserves). Uncheck below to type your own amount.</span><input id="sr-maint" type="number" value="190" min="0" step="10" /></label>
+          <label style="display:flex;align-items:center;gap:0.5rem;flex-direction:row"><input id="sr-maint-auto" type="checkbox" checked style="width:auto;margin:0" /> Auto-set maintenance to 10% of rent</label>
+          <label>Other landlord expenses / mo ($)<span class="tool-hint">Utilities you pay, landscaping, etc. (not PITI, management, or maintenance above)</span><input id="sr-exp" type="number" value="0" min="0" step="25" /></label>
           <label>PITI + HOA / mo while renting ($)<span class="tool-hint">Principal, interest, taxes, insurance, HOA if you keep the loan.</span><input id="sr-pitia" type="number" value="1600" min="0" step="25" /></label>
           <label>Years to compare<input id="sr-years" type="number" value="5" min="1" max="30" /></label>
         </div>
