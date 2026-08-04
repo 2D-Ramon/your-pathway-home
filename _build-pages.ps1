@@ -25,13 +25,22 @@ function Get-Header([string]$active) {
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html">
-        <img src="assets/logo-dark.png" alt="Your Pathway Home logo" width="48" height="48" />
+        <img class="brand-photo" src="assets/headshot.jpg" alt="Tudy Valdez" width="48" height="48" />
         <span class="brand-text">
           <strong>Your Pathway Home</strong>
           <span>Tudy Valdez | Realtor(R) | AXEN Realty</span>
         </span>
       </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <div class="header-actions">
+        <div class="header-cta">
+          <a class="btn btn-ghost" href="sms:9188133771">Text</a>
+          <a class="btn btn-primary" href="tel:9188133771">Call</a>
+        </div>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+          <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="nav-toggle-label">Menu</span>
+        </button>
+      </div>
       <nav class="nav" id="site-nav">
         <a href="index.html"$(Cur 'index')>Home</a>
         <a href="buy.html"$(Cur 'buy')>Buy</a>
@@ -53,10 +62,6 @@ function Get-Header([string]$active) {
         <a href="about.html"$(Cur 'about')>About</a>
         <a href="contact.html"$(Cur 'contact')>Contact</a>
       </nav>
-      <div class="header-cta">
-        <a class="btn btn-ghost" href="sms:9188133771">Text</a>
-        <a class="btn btn-primary" href="tel:9188133771">Call</a>
-      </div>
     </div>
   </header>
   <main id="main">
@@ -159,8 +164,8 @@ $homeBody = @'
         <span>AXEN Realty</span>
       </div>
     </div>
-    <aside class="hero-card">
-      <img src="assets/headshot.jpg" alt="Tudy Valdez, Realtor" width="400" height="500" />
+    <aside class="hero-card hero-card--logo">
+      <img src="assets/logo-dark.png" alt="Your Pathway Home logo" width="400" height="400" />
       <h2>Tudy Valdez</h2>
       <p>Realtor(R) | OK #170566 | Helping people buy and sell with clarity - residential, commercial, and land.</p>
       <a class="btn btn-primary" href="about.html">About Tudy</a>
@@ -173,12 +178,12 @@ $homeBody = @'
     <h2 class="section-title">How can I help?</h2>
     <p class="section-sub">Start where you are. Every path leads to a real conversation - call, text, or form.</p>
     <div class="grid-3">
-      <a class="card" href="buy.html"><div class="icon">B</div><h3>Buy a home</h3><p>Process guide, pre-approval tips, and a path from first search to closing keys.</p></a>
-      <a class="card" href="sell.html"><div class="icon">S</div><h3>Sell a home</h3><p>Pricing strategy, net-sheet education, and a calm plan for Oklahoma sellers.</p></a>
-      <a class="card" href="search.html"><div class="icon">H</div><h3>Home search</h3><p>Browse homes for sale via Lofty / MLSOK-powered search, or send Tudy your criteria.</p></a>
-      <a class="card" href="tools.html"><div class="icon">T</div><h3>Free tools</h3><p>Mortgage calculator, checklists, seller net sheet estimator, and more.</p></a>
-      <a class="card" href="homestead.html"><div class="icon">H</div><h3>Homestead</h3><p>How to apply + official county links (Tulsa and neighboring counties).</p></a>
-      <a class="card" href="first-time-buyers.html"><div class="icon">1</div><h3>First-time buyers</h3><p>Plain-English hub: glossary, readiness checklist, and next steps.</p></a>
+      <a class="card" href="buy.html"><h3>Buy a home</h3><p>Process guide, pre-approval tips, and a path from first search to closing keys.</p></a>
+      <a class="card" href="sell.html"><h3>Sell a home</h3><p>Pricing strategy, net-sheet education, and a calm plan for Oklahoma sellers.</p></a>
+      <a class="card" href="search.html"><h3>Home search</h3><p>Browse homes for sale via Lofty / MLSOK-powered search, or send Tudy your criteria.</p></a>
+      <a class="card" href="tools.html"><h3>Free tools</h3><p>Mortgage calculator, checklists, seller net sheet estimator, and more.</p></a>
+      <a class="card" href="homestead.html"><h3>Homestead</h3><p>How to apply + official county links (Tulsa and neighboring counties).</p></a>
+      <a class="card" href="first-time-buyers.html"><h3>First-time buyers</h3><p>Plain-English hub: glossary, readiness checklist, and next steps.</p></a>
     </div>
   </div>
 </section>
@@ -187,7 +192,7 @@ $homeBody = @'
   <div class="container">
     <h2 class="section-title">Popular resources</h2>
     <div class="grid-3">
-      <a class="card" href="faq.html"><h3>FAQ</h3><p>FSBO, timelines, closing, and commissions - straight answers.</p></a>
+      <a class="card" href="faq.html"><h3>FAQ</h3><p>For Sale By Owner, timelines, closing, and commissions - straight answers.</p></a>
       <a class="card" href="relocating.html"><h3>Relocating to Oklahoma</h3><p>Out-of-state buyers: what to know before you visit or write an offer.</p></a>
       <a class="card" href="recruiting.html"><h3>Agents &amp; lenders</h3><p>Building with AXEN - conversations welcome from any state.</p></a>
     </div>
@@ -278,7 +283,7 @@ $sell = @'
   <h2>Seller net sheet (education)</h2>
   <p>List price is a headline. A <strong>net sheet</strong> estimates what you might walk away with after costs and payoffs. Use the free estimator on the <a href="tools.html#net-sheet">Tools page</a>, then text me for a real walkthrough: <a href="sms:9188133771">918-813-3771</a>.</p>
   <div class="disclaimer">Educational only - not a guarantee of sale price, speed, or net proceeds.</div>
-  <h2>FSBO?</h2>
+  <h2>For Sale By Owner?</h2>
   <p>If you're exploring for-sale-by-owner, read the <a href="faq.html">FAQ</a> and know limited / a la carte support may be available. No judgment - just eyes open.</p>
 </div></section>
 '@
@@ -639,7 +644,7 @@ Write-Page 'faq.html' 'FAQ' 'index' @'
   <p>Usually yes. You know a realistic budget, sellers take you more seriously, and you spend less time on homes that won't finance.</p>
   <h2>What's a seller net sheet?</h2>
   <p>An estimate of sale price minus costs and payoffs ~ what you might walk away with. List price is only a headline. Try the <a href="tools.html#net-sheet">net tool</a>.</p>
-  <h2>Can I really save money as a FSBO?</h2>
+  <h2>Can I really save money as a For Sale By Owner?</h2>
   <p>Sometimes - and sometimes "savings" get eaten by price, time, or contract risk. Limited / a la carte help may be available. Ask me anything: <a href="sms:9188133771">text</a>.</p>
   <h2>How long does buying or selling take?</h2>
   <p>It depends on price point, condition, financing, and negotiation. I'll give you a realistic timeline for your property or search - not a one-size answer.</p>

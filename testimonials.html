@@ -13,13 +13,22 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html">
-        <img src="assets/logo-dark.png" alt="Your Pathway Home logo" width="48" height="48" />
+        <img class="brand-photo" src="assets/headshot.jpg" alt="Tudy Valdez" width="48" height="48" />
         <span class="brand-text">
           <strong>Your Pathway Home</strong>
           <span>Tudy Valdez | Realtor(R) | AXEN Realty</span>
         </span>
       </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <div class="header-actions">
+        <div class="header-cta">
+          <a class="btn btn-ghost" href="sms:9188133771">Text</a>
+          <a class="btn btn-primary" href="tel:9188133771">Call</a>
+        </div>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+          <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="nav-toggle-label">Menu</span>
+        </button>
+      </div>
       <nav class="nav" id="site-nav">
         <a href="index.html">Home</a>
         <a href="buy.html">Buy</a>
@@ -41,10 +50,6 @@
         <a href="about.html" aria-current="page">About</a>
         <a href="contact.html">Contact</a>
       </nav>
-      <div class="header-cta">
-        <a class="btn btn-ghost" href="sms:9188133771">Text</a>
-        <a class="btn btn-primary" href="tel:9188133771">Call</a>
-      </div>
     </div>
   </header>
   <main id="main"><section class="page-hero"><div class="container"><h1>Reviews &amp; testimonials</h1><p class="lead">Public review profiles coming soon. For now, ask me for recent client references or search my name on major platforms.</p></div></section>

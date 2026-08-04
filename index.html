@@ -13,13 +13,22 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html">
-        <img src="assets/logo-dark.png" alt="Your Pathway Home logo" width="48" height="48" />
+        <img class="brand-photo" src="assets/headshot.jpg" alt="Tudy Valdez" width="48" height="48" />
         <span class="brand-text">
           <strong>Your Pathway Home</strong>
           <span>Tudy Valdez | Realtor(R) | AXEN Realty</span>
         </span>
       </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <div class="header-actions">
+        <div class="header-cta">
+          <a class="btn btn-ghost" href="sms:9188133771">Text</a>
+          <a class="btn btn-primary" href="tel:9188133771">Call</a>
+        </div>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+          <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="nav-toggle-label">Menu</span>
+        </button>
+      </div>
       <nav class="nav" id="site-nav">
         <a href="index.html" aria-current="page">Home</a>
         <a href="buy.html">Buy</a>
@@ -41,10 +50,6 @@
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
       </nav>
-      <div class="header-cta">
-        <a class="btn btn-ghost" href="sms:9188133771">Text</a>
-        <a class="btn btn-primary" href="tel:9188133771">Call</a>
-      </div>
     </div>
   </header>
   <main id="main"><section class="hero">
@@ -64,8 +69,8 @@
         <span>AXEN Realty</span>
       </div>
     </div>
-    <aside class="hero-card">
-      <img src="assets/headshot.jpg" alt="Tudy Valdez, Realtor" width="400" height="500" />
+    <aside class="hero-card hero-card--logo">
+      <img src="assets/logo-dark.png" alt="Your Pathway Home logo" width="400" height="400" />
       <h2>Tudy Valdez</h2>
       <p>Realtor(R) | OK #170566 | Helping people buy and sell with clarity - residential, commercial, and land.</p>
       <a class="btn btn-primary" href="about.html">About Tudy</a>
@@ -78,12 +83,12 @@
     <h2 class="section-title">How can I help?</h2>
     <p class="section-sub">Start where you are. Every path leads to a real conversation - call, text, or form.</p>
     <div class="grid-3">
-      <a class="card" href="buy.html"><div class="icon">B</div><h3>Buy a home</h3><p>Process guide, pre-approval tips, and a path from first search to closing keys.</p></a>
-      <a class="card" href="sell.html"><div class="icon">S</div><h3>Sell a home</h3><p>Pricing strategy, net-sheet education, and a calm plan for Oklahoma sellers.</p></a>
-      <a class="card" href="search.html"><div class="icon">H</div><h3>Home search</h3><p>Browse homes for sale via Lofty / MLSOK-powered search, or send Tudy your criteria.</p></a>
-      <a class="card" href="tools.html"><div class="icon">T</div><h3>Free tools</h3><p>Mortgage calculator, checklists, seller net sheet estimator, and more.</p></a>
-      <a class="card" href="homestead.html"><div class="icon">H</div><h3>Homestead</h3><p>How to apply + official county links (Tulsa and neighboring counties).</p></a>
-      <a class="card" href="first-time-buyers.html"><div class="icon">1</div><h3>First-time buyers</h3><p>Plain-English hub: glossary, readiness checklist, and next steps.</p></a>
+      <a class="card" href="buy.html"><h3>Buy a home</h3><p>Process guide, pre-approval tips, and a path from first search to closing keys.</p></a>
+      <a class="card" href="sell.html"><h3>Sell a home</h3><p>Pricing strategy, net-sheet education, and a calm plan for Oklahoma sellers.</p></a>
+      <a class="card" href="search.html"><h3>Home search</h3><p>Browse homes for sale via Lofty / MLSOK-powered search, or send Tudy your criteria.</p></a>
+      <a class="card" href="tools.html"><h3>Free tools</h3><p>Mortgage calculator, checklists, seller net sheet estimator, and more.</p></a>
+      <a class="card" href="homestead.html"><h3>Homestead</h3><p>How to apply + official county links (Tulsa and neighboring counties).</p></a>
+      <a class="card" href="first-time-buyers.html"><h3>First-time buyers</h3><p>Plain-English hub: glossary, readiness checklist, and next steps.</p></a>
     </div>
   </div>
 </section>
@@ -92,7 +97,7 @@
   <div class="container">
     <h2 class="section-title">Popular resources</h2>
     <div class="grid-3">
-      <a class="card" href="faq.html"><h3>FAQ</h3><p>FSBO, timelines, closing, and commissions - straight answers.</p></a>
+      <a class="card" href="faq.html"><h3>FAQ</h3><p>For Sale By Owner, timelines, closing, and commissions - straight answers.</p></a>
       <a class="card" href="relocating.html"><h3>Relocating to Oklahoma</h3><p>Out-of-state buyers: what to know before you visit or write an offer.</p></a>
       <a class="card" href="recruiting.html"><h3>Agents &amp; lenders</h3><p>Building with AXEN - conversations welcome from any state.</p></a>
     </div>

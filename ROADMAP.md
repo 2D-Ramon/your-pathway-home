@@ -55,7 +55,7 @@
 1. **Featured / new listings** strip (from IDX when live)  
 2. **First-time buyer hub** (glossary + checklist + pre-approval CTA)  
 3. **Seller net-sheet explainer** (ties to social W1-04 content)  
-4. **FAQ** (FSBO, commissions, timeline, closing)  
+4. **FAQ** (For Sale By Owner, commissions, timeline, closing)  
 5. **Market snapshot** page (manual monthly update or MLS widget)  
 6. **Open house calendar** (IDX or manual)  
 7. **Relocation / out-of-state buyer** guide (OK-focused)  
