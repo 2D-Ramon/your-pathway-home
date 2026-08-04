@@ -37,12 +37,16 @@
         <div class="nav-drop is-open">
           <button type="button" class="nav-drop-btn" aria-expanded="true" aria-haspopup="true">Tools</button>
           <div class="nav-drop-menu" role="menu">
-            <a href="tools.html" aria-current="page" role="menuitem">All tools</a>
+            <a href="tools.html" aria-current="page" role="menuitem">All tools hub</a>
+            <a href="tools.html#buyers" role="menuitem">Buyer tools</a>
+            <a href="tools.html#sellers" role="menuitem">Seller tools</a>
+            <a href="tools.html#investors" role="menuitem">Investor tools</a>
+            <a href="tools.html#general" role="menuitem">Guides &amp; OK resources</a>
+            <a href="tools.html#external" role="menuitem">Trusted external links</a>
             <a href="tools-mortgage.html" role="menuitem">Mortgage calculator</a>
-            <a href="tools-net-sheet.html" role="menuitem">Seller net sheet</a>
-            <a href="tools-buyer-checklist.html" role="menuitem">Buyer checklist</a>
-            <a href="tools-seller-checklist.html" role="menuitem">Seller checklist</a>
-            <a href="tools-closing-costs.html" aria-current="page" role="menuitem">Closing costs</a>
+            <a href="tools-affordability.html" role="menuitem">Affordability</a>
+            <a href="tools-cash-flow.html" role="menuitem">Rental cash flow</a>
+            <a href="glossary.html" role="menuitem">Glossary</a>
           </div>
         </div>
         <a href="homestead.html">Homestead</a>
@@ -53,22 +57,39 @@
     </div>
   </header>
   <main id="main"><section class="page-hero"><div class="container">
-  <span class="badge">Tools</span>
-  <h1>Closing cost explainer</h1>
-  <p class="lead">Plain English - not a quote. Exact numbers depend on your contract, loan, and title company.</p>
-  <p><a class="btn btn-ghost" href="tools.html">All tools</a></p>
+  <span class="badge">Buyer tools</span>
+  <h1>Closing costs + buyer estimator</h1>
+  <p class="lead">Plain English categories plus a rough cash-to-close estimator. Not a title or lender quote.</p>
+  <p><a class="btn btn-ghost" href="tools.html#buyers">All buyer tools</a></p>
 </div></section>
-<section><div class="container prose">
-  <p>Buyers and sellers often pay different items. Common categories include:</p>
-  <ul>
-    <li>Lender fees (origination, appraisal, credit report)</li>
-    <li>Title and escrow / closing fees</li>
-    <li>Prepaid taxes and insurance</li>
-    <li>Commissions (negotiated)</li>
-    <li>Prorations (taxes, HOA, rents when applicable)</li>
-  </ul>
-  <p>Always verify with your title company and lender. For a walkthrough of your scenario, text or call Tudy.</p>
-  <p><a class="btn btn-primary" href="sms:9188133771">Text 918-813-3771</a> <a class="btn btn-ghost" href="contact.html">Contact form</a></p>
+<section><div class="container">
+  <div class="tool-panel">
+    <h3>Rough buyer closing cost estimator</h3>
+    <form id="buyclose-form" class="form">
+      <div class="grid-2">
+        <label>Home price ($)<input id="bc-price" type="number" value="300000" min="0" step="1000" /></label>
+        <label>Loan as % of price (LTV)<input id="bc-ltv" type="number" value="95" min="0" max="100" step="0.5" /></label>
+        <label>Est. closing fees (% of price)<input id="bc-close-pct" type="number" value="2.5" min="0" step="0.1" /></label>
+        <label>Prepaids / escrows ($)<input id="bc-prepaid" type="number" value="2500" min="0" step="100" /></label>
+        <label>Other cash needs ($)<input id="bc-other" type="number" value="500" min="0" step="50" /></label>
+      </div>
+      <button class="btn btn-primary" type="submit">Estimate</button>
+    </form>
+    <div class="tool-result" id="buyclose-result">Enter numbers and estimate.</div>
+  </div>
+  <div class="prose" style="margin-top:2rem">
+    <h2>What closing costs usually include</h2>
+    <p>Buyers and sellers often pay different items. Common categories include:</p>
+    <ul>
+      <li>Lender fees (origination, appraisal, credit report)</li>
+      <li>Title and escrow / closing fees</li>
+      <li>Prepaid taxes and insurance</li>
+      <li>Commissions (negotiated - often seller-paid, but terms vary)</li>
+      <li>Prorations (taxes, HOA, rents when applicable)</li>
+    </ul>
+    <p>Always verify with your title company and lender. For a walkthrough of your scenario, text or call Tudy.</p>
+    <p><a class="btn btn-primary" href="sms:9188133771">Text 918-813-3771</a> <a class="btn btn-ghost" href="https://tudyvaldez.axenrealty.com/contact-lead" target="_blank" rel="noopener">Contact form</a></p>
+  </div>
 </div></section>  </main>
   <footer class="site-footer">
     <div class="container footer-grid">
@@ -108,11 +129,14 @@
       </div>
       <div>
         <h4>Resources</h4>
+        <a href="tools.html">Tools hub</a>
+        <a href="glossary.html">Glossary</a>
+        <a href="resources-oklahoma.html">Oklahoma resources</a>
         <a href="first-time-buyers.html">First-time buyers</a>
         <a href="relocating.html">Relocating to Oklahoma</a>
         <a href="neighborhoods.html">Neighborhoods</a>
-        <a href="market.html">Market snapshot</a>
-        <a href="recruiting.html">Careers / recruiting</a>
+        <a href="guides-loan-programs.html">VA / FHA / USDA</a>
+        <a href="espanol.html">Espanol</a>
         <a href="bio.html">Link-in-bio</a>
       </div>
       <div>
@@ -144,6 +168,6 @@
     <a class="btn btn-ghost" href="contact.html">Form</a>
   </div>
   <script src="js/main.js"></script>
-  
+  <script src="js/calculators.js"></script>
 </body>
 </html>

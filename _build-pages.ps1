@@ -5,10 +5,13 @@ $utf8 = New-Object System.Text.UTF8Encoding $true
 
 function Get-Header([string]$active) {
   function Cur([string]$id) {
-    if ($active -eq $id -or ($id -eq 'tools' -and $active -like 'tools*')) { return ' aria-current="page"' }
+    if ($active -eq $id) { return ' aria-current="page"' }
+    $toolish = ($active -like 'tools*' -or $active -like 'resources*' -or $active -like 'guides*' -or $active -in @('glossary','documents','fair-housing','espanol'))
+    if ($id -eq 'tools' -and $toolish) { return ' aria-current="page"' }
     return ''
   }
-  $toolsOpen = if ($active -like 'tools*') { ' is-open' } else { '' }
+  $toolish = ($active -like 'tools*' -or $active -like 'resources*' -or $active -like 'guides*' -or $active -in @('glossary','documents','fair-housing','espanol'))
+  $toolsOpen = if ($toolish) { ' is-open' } else { '' }
 @"
 <!DOCTYPE html>
 <html lang="en">
@@ -49,12 +52,16 @@ function Get-Header([string]$active) {
         <div class="nav-drop$toolsOpen">
           <button type="button" class="nav-drop-btn" aria-expanded="$(if ($toolsOpen) { 'true' } else { 'false' })" aria-haspopup="true">Tools</button>
           <div class="nav-drop-menu" role="menu">
-            <a href="tools.html"$(Cur 'tools') role="menuitem">All tools</a>
+            <a href="tools.html"$(Cur 'tools') role="menuitem">All tools hub</a>
+            <a href="tools.html#buyers" role="menuitem">Buyer tools</a>
+            <a href="tools.html#sellers" role="menuitem">Seller tools</a>
+            <a href="tools.html#investors" role="menuitem">Investor tools</a>
+            <a href="tools.html#general" role="menuitem">Guides &amp; OK resources</a>
+            <a href="tools.html#external" role="menuitem">Trusted external links</a>
             <a href="tools-mortgage.html"$(Cur 'tools-mortgage') role="menuitem">Mortgage calculator</a>
-            <a href="tools-net-sheet.html"$(Cur 'tools-net-sheet') role="menuitem">Seller net sheet</a>
-            <a href="tools-buyer-checklist.html"$(Cur 'tools-buyer-checklist') role="menuitem">Buyer checklist</a>
-            <a href="tools-seller-checklist.html"$(Cur 'tools-seller-checklist') role="menuitem">Seller checklist</a>
-            <a href="tools-closing-costs.html"$(Cur 'tools-closing-costs') role="menuitem">Closing costs</a>
+            <a href="tools-affordability.html"$(Cur 'tools-affordability') role="menuitem">Affordability</a>
+            <a href="tools-cash-flow.html"$(Cur 'tools-cash-flow') role="menuitem">Rental cash flow</a>
+            <a href="glossary.html"$(Cur 'glossary') role="menuitem">Glossary</a>
           </div>
         </div>
         <a href="homestead.html"$(Cur 'homestead')>Homestead</a>
@@ -109,11 +116,14 @@ function Get-Footer {
       </div>
       <div>
         <h4>Resources</h4>
+        <a href="tools.html">Tools hub</a>
+        <a href="glossary.html">Glossary</a>
+        <a href="resources-oklahoma.html">Oklahoma resources</a>
         <a href="first-time-buyers.html">First-time buyers</a>
         <a href="relocating.html">Relocating to Oklahoma</a>
         <a href="neighborhoods.html">Neighborhoods</a>
-        <a href="market.html">Market snapshot</a>
-        <a href="recruiting.html">Careers / recruiting</a>
+        <a href="guides-loan-programs.html">VA / FHA / USDA</a>
+        <a href="espanol.html">Espanol</a>
         <a href="bio.html">Link-in-bio</a>
       </div>
       <div>
@@ -336,21 +346,96 @@ Write-Page 'search.html' 'Home Search' 'search' $search
 
 $tools = @'
 <section class="page-hero"><div class="container">
-  <span class="badge">Free tools</span>
-  <h1>Buyer and seller tools</h1>
-  <p class="lead">Pick a tool below - also available from the Tools menu in the header. Educational only - not lender quotes or guarantees.</p>
+  <span class="badge">Free tools hub</span>
+  <h1>Tools, guides &amp; resources</h1>
+  <p class="lead">Your Pathway Home go-to library for buyers, sellers, investors, and anyone navigating Oklahoma real estate. Educational only - not lender, tax, legal, or investment advice.</p>
+  <p class="muted">Jump: <a href="#buyers">Buyers</a> · <a href="#sellers">Sellers</a> · <a href="#investors">Investors</a> · <a href="#general">General</a> · <a href="#external">External links</a></p>
 </div></section>
-<section><div class="container">
+
+<section id="buyers"><div class="container">
+  <h2 class="section-title">For buyers</h2>
+  <p class="section-sub">Calculators, checklists, and plain-English guides from first search to offer.</p>
   <div class="grid-3">
-    <a class="card" href="tools-mortgage.html"><div class="icon">$</div><h3>Mortgage calculator</h3><p>Estimate principal, interest, taxes, insurance, and HOA.</p></a>
-    <a class="card" href="tools-net-sheet.html"><div class="icon">N</div><h3>Seller net sheet</h3><p>Rough walk-away estimate including taxes and insurance.</p></a>
-    <a class="card" href="tools-buyer-checklist.html"><div class="icon">B</div><h3>Buyer checklist</h3><p>Readiness list including Buyer Broker agreement.</p></a>
-    <a class="card" href="tools-seller-checklist.html"><div class="icon">S</div><h3>Seller checklist</h3><p>Prep list before you list.</p></a>
-    <a class="card" href="tools-closing-costs.html"><div class="icon">C</div><h3>Closing costs</h3><p>Plain-English explainer of common fees.</p></a>
+    <a class="card" href="tools-mortgage.html"><h3>Mortgage calculator</h3><p>Estimate P&amp;I, taxes, insurance, and HOA.</p></a>
+    <a class="card" href="tools-affordability.html"><h3>How much home can I afford?</h3><p>Income, debts, and DTI-based price range.</p></a>
+    <a class="card" href="tools-down-payment.html"><h3>Down payment savings</h3><p>Timeline to hit your down payment goal.</p></a>
+    <a class="card" href="tools-rent-vs-buy.html"><h3>Rent vs buy</h3><p>Simplified multi-year comparison.</p></a>
+    <a class="card" href="tools-closing-costs.html"><h3>Buyer closing cost estimator</h3><p>Fees explainer + rough cash-to-close math.</p></a>
+    <a class="card" href="tools-buyer-checklist.html"><h3>Buyer readiness checklist</h3><p>Including Buyer Broker agreement.</p></a>
+    <a class="card" href="tools-preapproval.html"><h3>Pre-approval checklist</h3><p>What lenders want + ask Tudy for intros.</p></a>
+    <a class="card" href="guides-offer-strategy.html"><h3>Offer strategy guide</h3><p>Earnest money, contingencies, competition.</p></a>
+    <a class="card" href="resources-schools.html"><h3>Schools &amp; districts hub</h3><p>Tulsa metro district and research links.</p></a>
+    <a class="card" href="resources-commute.html"><h3>Commute &amp; neighborhood fit</h3><p>How to choose an area that fits your life.</p></a>
+    <a class="card" href="guides-loan-programs.html"><h3>VA / FHA / USDA</h3><p>Plain-English loan program overview.</p></a>
+    <a class="card" href="first-time-buyers.html"><h3>First-time buyer hub</h3><p>Glossary starters and next steps.</p></a>
   </div>
 </div></section>
+
+<section id="sellers" style="background:#0d0a0d;border-top:1px solid rgba(230,0,126,.25);border-bottom:1px solid rgba(230,0,126,.25)"><div class="container">
+  <h2 class="section-title">For sellers</h2>
+  <p class="section-sub">Net proceeds, prep, pricing mindset, and sell-or-rent decisions.</p>
+  <div class="grid-3">
+    <a class="card" href="tools-net-sheet.html"><h3>Seller net sheet</h3><p>Rough walk-away estimate.</p></a>
+    <a class="card" href="tools-seller-checklist.html"><h3>Seller prep checklist</h3><p>Before you list.</p></a>
+    <a class="card" href="tools-home-prep.html"><h3>Home prep cost estimator</h3><p>Budget paint, clean, repairs, staging.</p></a>
+    <a class="card" href="guides-pricing-strategy.html"><h3>Pricing strategy guide</h3><p>DOM, comps, and pricing mistakes.</p></a>
+    <a class="card" href="tools-moving-checklist.html"><h3>Moving timeline checklist</h3><p>From list to keys-out.</p></a>
+    <a class="card" href="guides-capital-gains.html"><h3>Primary residence &amp; gains basics</h3><p>High-level IRS Pub 523 concepts (not tax advice).</p></a>
+    <a class="card" href="tools-sell-or-rent.html"><h3>Sell or rent?</h3><p>Simple decision calculator + questions.</p></a>
+    <a class="card" href="sell.html"><h3>Sell process</h3><p>Step-by-step from goals to closing.</p></a>
+  </div>
+</div></section>
+
+<section id="investors"><div class="container">
+  <h2 class="section-title">For investors</h2>
+  <p class="section-sub">Underwrite deals roughly, then talk strategy - educational models only.</p>
+  <div class="grid-3">
+    <a class="card" href="tools-cash-flow.html"><h3>Rental cash-flow calculator</h3><p>NOI, cash flow, rough cap rate.</p></a>
+    <a class="card" href="tools-flip.html"><h3>Flip / BRRRR worksheet</h3><p>Purchase, rehab, holding, ARV profit.</p></a>
+    <a class="card" href="guides-1031.html"><h3>1031 exchange basics</h3><p>What it is (and is not).</p></a>
+    <a class="card" href="guides-multifamily.html"><h3>Duplex / multifamily guide</h3><p>House-hacking and small multi basics.</p></a>
+    <a class="card" href="guides-str.html"><h3>Short-term rental reality check</h3><p>STR rules, costs, and diligence.</p></a>
+  </div>
+</div></section>
+
+<section id="general" style="background:#0d0a0d;border-top:1px solid rgba(230,0,126,.25);border-bottom:1px solid rgba(230,0,126,.25)"><div class="container">
+  <h2 class="section-title">For everyone in the business &amp; general public</h2>
+  <p class="section-sub">Reference pages that make this site a real resource - not just a brochure.</p>
+  <div class="grid-3">
+    <a class="card" href="glossary.html"><h3>Real estate glossary A–Z</h3><p>Plain definitions of common terms.</p></a>
+    <a class="card" href="documents.html"><h3>Document vault</h3><p>What buyers, sellers, and investors usually need.</p></a>
+    <a class="card" href="fair-housing.html"><h3>Fair housing basics</h3><p>What agents cannot do or say.</p></a>
+    <a class="card" href="resources-oklahoma.html"><h3>Oklahoma resource hub</h3><p>Assessor, homestead, insurance, and more.</p></a>
+    <a class="card" href="resources-flood.html"><h3>Flood maps &amp; insurance</h3><p>FEMA links + homeowner insurance notes.</p></a>
+    <a class="card" href="resources-utilities.html"><h3>Tulsa utility cost guide</h3><p>Rough ranges for relocators.</p></a>
+    <a class="card" href="espanol.html"><h3>Resumen en español</h3><p>Enlaces rápidos y contacto.</p></a>
+    <a class="card" href="homestead.html"><h3>Homestead exemption</h3><p>How-to + county links.</p></a>
+    <a class="card" href="relocating.html"><h3>Relocating to Oklahoma</h3><p>Out-of-state buyer guide.</p></a>
+    <a class="card" href="recruiting.html"><h3>Agents &amp; lenders</h3><p>Careers / recruiting conversations.</p></a>
+  </div>
+</div></section>
+
+<section id="external"><div class="container">
+  <h2 class="section-title">Trusted external tools (free)</h2>
+  <p class="section-sub">Open in a new tab. These are public resources - always verify and use your own judgment. Tudy remains your local guide.</p>
+  <div class="grid-3">
+    <a class="card" href="https://www.nar.realtor/research-and-statistics" target="_blank" rel="noopener"><h3>NAR Research</h3><p>National Association of Realtors research and statistics.</p></a>
+    <a class="card" href="https://www.fhfa.gov/DataTools/Downloads/Pages/House-Price-Index.aspx" target="_blank" rel="noopener"><h3>FHFA House Price Index</h3><p>Free public house price index data.</p></a>
+    <a class="card" href="https://data.census.gov/" target="_blank" rel="noopener"><h3>U.S. Census / ACS</h3><p>Demographics and community data.</p></a>
+    <a class="card" href="https://msc.fema.gov/portal/home" target="_blank" rel="noopener"><h3>FEMA Flood Map Service</h3><p>Official flood map lookup.</p></a>
+    <a class="card" href="https://www.oid.ok.gov/" target="_blank" rel="noopener"><h3>OK Insurance Department</h3><p>Consumer insurance information for Oklahoma.</p></a>
+    <a class="card" href="https://www.hud.gov/topics/buying_a_home" target="_blank" rel="noopener"><h3>HUD homebuying</h3><p>Federal consumer homebuyer education.</p></a>
+    <a class="card" href="https://www.biggerpockets.com/calc" target="_blank" rel="noopener"><h3>BiggerPockets calculators</h3><p>Additional free investor calculators.</p></a>
+    <a class="card" href="https://www.bankrate.com/mortgages/mortgage-calculator/" target="_blank" rel="noopener"><h3>Bankrate mortgage tools</h3><p>Optional second opinion calculators.</p></a>
+    <a class="card" href="https://www.nerdwallet.com/mortgages/mortgage-calculator" target="_blank" rel="noopener"><h3>NerdWallet mortgage tools</h3><p>Optional consumer calculators.</p></a>
+    <a class="card" href="https://tudyvaldez.axenrealty.com/contact-lead" target="_blank" rel="noopener"><h3>AXEN / Lofty contact form</h3><p>Send a lead into Tudy&apos;s CRM.</p></a>
+    <a class="card" href="https://tudyvaldez.axenrealty.com/homes-for-sale" target="_blank" rel="noopener"><h3>AXEN home search</h3><p>Live listings search via Lofty.</p></a>
+    <a class="card" href="resources-oklahoma.html"><h3>County assessors (OK hub)</h3><p>Local assessor and homestead starting points.</p></a>
+  </div>
+  <p class="disclaimer" style="margin-top:1.5rem">Third-party sites have their own terms, accuracy, and privacy policies. Listing or linking does not mean endorsement of every page or product. For local strategy, <a href="sms:9188133771">text Tudy 918-813-3771</a>.</p>
+</div></section>
 '@
-Write-Page 'tools.html' 'Tools' 'tools' $tools
+Write-Page 'tools.html' 'Tools Hub' 'tools' $tools
 
 $toolMortgage = @'
 <section class="page-hero"><div class="container">
@@ -484,25 +569,42 @@ Write-Page 'tools-seller-checklist.html' 'Seller Checklist' 'tools-seller-checkl
 
 $toolClosing = @'
 <section class="page-hero"><div class="container">
-  <span class="badge">Tools</span>
-  <h1>Closing cost explainer</h1>
-  <p class="lead">Plain English - not a quote. Exact numbers depend on your contract, loan, and title company.</p>
-  <p><a class="btn btn-ghost" href="tools.html">All tools</a></p>
+  <span class="badge">Buyer tools</span>
+  <h1>Closing costs + buyer estimator</h1>
+  <p class="lead">Plain English categories plus a rough cash-to-close estimator. Not a title or lender quote.</p>
+  <p><a class="btn btn-ghost" href="tools.html#buyers">All buyer tools</a></p>
 </div></section>
-<section><div class="container prose">
-  <p>Buyers and sellers often pay different items. Common categories include:</p>
-  <ul>
-    <li>Lender fees (origination, appraisal, credit report)</li>
-    <li>Title and escrow / closing fees</li>
-    <li>Prepaid taxes and insurance</li>
-    <li>Commissions (negotiated)</li>
-    <li>Prorations (taxes, HOA, rents when applicable)</li>
-  </ul>
-  <p>Always verify with your title company and lender. For a walkthrough of your scenario, text or call Tudy.</p>
-  <p><a class="btn btn-primary" href="sms:9188133771">Text 918-813-3771</a> <a class="btn btn-ghost" href="contact.html">Contact form</a></p>
+<section><div class="container">
+  <div class="tool-panel">
+    <h3>Rough buyer closing cost estimator</h3>
+    <form id="buyclose-form" class="form">
+      <div class="grid-2">
+        <label>Home price ($)<input id="bc-price" type="number" value="300000" min="0" step="1000" /></label>
+        <label>Loan as % of price (LTV)<input id="bc-ltv" type="number" value="95" min="0" max="100" step="0.5" /></label>
+        <label>Est. closing fees (% of price)<input id="bc-close-pct" type="number" value="2.5" min="0" step="0.1" /></label>
+        <label>Prepaids / escrows ($)<input id="bc-prepaid" type="number" value="2500" min="0" step="100" /></label>
+        <label>Other cash needs ($)<input id="bc-other" type="number" value="500" min="0" step="50" /></label>
+      </div>
+      <button class="btn btn-primary" type="submit">Estimate</button>
+    </form>
+    <div class="tool-result" id="buyclose-result">Enter numbers and estimate.</div>
+  </div>
+  <div class="prose" style="margin-top:2rem">
+    <h2>What closing costs usually include</h2>
+    <p>Buyers and sellers often pay different items. Common categories include:</p>
+    <ul>
+      <li>Lender fees (origination, appraisal, credit report)</li>
+      <li>Title and escrow / closing fees</li>
+      <li>Prepaid taxes and insurance</li>
+      <li>Commissions (negotiated - often seller-paid, but terms vary)</li>
+      <li>Prorations (taxes, HOA, rents when applicable)</li>
+    </ul>
+    <p>Always verify with your title company and lender. For a walkthrough of your scenario, text or call Tudy.</p>
+    <p><a class="btn btn-primary" href="sms:9188133771">Text 918-813-3771</a> <a class="btn btn-ghost" href="https://tudyvaldez.axenrealty.com/contact-lead" target="_blank" rel="noopener">Contact form</a></p>
+  </div>
 </div></section>
 '@
-Write-Page 'tools-closing-costs.html' 'Closing Costs' 'tools-closing-costs' $toolClosing
+Write-Page 'tools-closing-costs.html' 'Closing Costs' 'tools-closing-costs' $toolClosing '<script src="js/calculators.js"></script>'
 
 $homestead = @'
 <section class="page-hero"><div class="container">
@@ -794,4 +896,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\_build-pages.ps1
 See `lofty-setup.html` for where to find forms/IDX in the CRM UI.
 '@
 [IO.File]::WriteAllText((Join-Path $root 'README.md'), $readme, $utf8)
+
+# Extra free tools / guides / resources
+. (Join-Path $root '_extra-tools-pages.ps1')
+
 Write-Host 'Done.'
