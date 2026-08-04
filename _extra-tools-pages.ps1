@@ -297,13 +297,13 @@ Write-Page 'tools-moving-checklist.html' 'Moving Timeline Checklist' 'tools-movi
 </div></section>
 <section><div class="container">
   <div class="tool-panel">
-    <h3>6–8 weeks out</h3>
+    <h3>6-8 weeks out</h3>
     <div class="checklist">
       <label><input type="checkbox" /> Talk goals, timing, and rough net with Tudy</label>
       <label><input type="checkbox" /> Declutter / donate plan started</label>
       <label><input type="checkbox" /> List repairs that are cheap but high-visibility</label>
     </div>
-    <h3 style="margin-top:1.25rem">3–4 weeks out</h3>
+    <h3 style="margin-top:1.25rem">3-4 weeks out</h3>
     <div class="checklist">
       <label><input type="checkbox" /> Deep clean booked or scheduled</label>
       <label><input type="checkbox" /> Photos / media plan set</label>
@@ -379,7 +379,9 @@ Write-Page 'tools-sell-or-rent.html' 'Sell or Rent' 'tools-sell-or-rent' @"
           <label>Vacancy allowance (%)<span class="tool-hint">Default 10% for empty months / turnover.</span><input id="sr-vacancy" type="number" value="10" min="0" max="50" step="1" /></label>
           <label>Property management / mo (`$)<span class="tool-hint">Defaults to 10% of expected rent. Uncheck below to type your own amount.</span><input id="sr-mgmt" type="number" value="190" min="0" step="10" /></label>
           <label style="display:flex;align-items:center;gap:0.5rem;flex-direction:row"><input id="sr-mgmt-auto" type="checkbox" checked style="width:auto;margin:0" /> Auto-set management to 10% of rent</label>
-          <label>Other landlord expenses / mo (`$)<span class="tool-hint">Repairs, reserves, utilities you pay, etc. (not PITI)</span><input id="sr-exp" type="number" value="350" min="0" step="25" /></label>
+          <label>Maintenance / mo (`$)<span class="tool-hint">Defaults to 10% of expected rent (repairs, reserves). Uncheck below to type your own amount.</span><input id="sr-maint" type="number" value="190" min="0" step="10" /></label>
+          <label style="display:flex;align-items:center;gap:0.5rem;flex-direction:row"><input id="sr-maint-auto" type="checkbox" checked style="width:auto;margin:0" /> Auto-set maintenance to 10% of rent</label>
+          <label>Other landlord expenses / mo (`$)<span class="tool-hint">Utilities you pay, landscaping, etc. (not PITI, management, or maintenance above)</span><input id="sr-exp" type="number" value="0" min="0" step="25" /></label>
           <label>PITI + HOA / mo while renting (`$)<span class="tool-hint">Principal, interest, taxes, insurance, HOA if you keep the loan.</span><input id="sr-pitia" type="number" value="1600" min="0" step="25" /></label>
           <label>Years to compare<input id="sr-years" type="number" value="5" min="1" max="30" /></label>
         </div>
