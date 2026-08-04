@@ -319,22 +319,34 @@
     var rentInput = document.getElementById("sr-rent");
     var mgmtInput = document.getElementById("sr-mgmt");
     var mgmtAuto = document.getElementById("sr-mgmt-auto");
-    function syncMgmtFromRent() {
-      if (!rentInput || !mgmtInput) return;
-      if (mgmtAuto && !mgmtAuto.checked) return;
+    var maintInput = document.getElementById("sr-maint");
+    var maintAuto = document.getElementById("sr-maint-auto");
+
+    function syncPctFromRent(input, autoBox) {
+      if (!rentInput || !input) return;
+      if (autoBox && !autoBox.checked) return;
       var r = Number(rentInput.value) || 0;
-      mgmtInput.value = String(Math.round(r * 0.1));
+      input.value = String(Math.round(r * 0.1));
+    }
+    function syncRentPercentFields() {
+      syncPctFromRent(mgmtInput, mgmtAuto);
+      syncPctFromRent(maintInput, maintAuto);
     }
     if (rentInput) {
-      rentInput.addEventListener("input", syncMgmtFromRent);
-      rentInput.addEventListener("change", syncMgmtFromRent);
+      rentInput.addEventListener("input", syncRentPercentFields);
+      rentInput.addEventListener("change", syncRentPercentFields);
     }
     if (mgmtAuto) {
       mgmtAuto.addEventListener("change", function () {
-        if (mgmtAuto.checked) syncMgmtFromRent();
+        if (mgmtAuto.checked) syncPctFromRent(mgmtInput, mgmtAuto);
       });
     }
-    syncMgmtFromRent();
+    if (maintAuto) {
+      maintAuto.addEventListener("change", function () {
+        if (maintAuto.checked) syncPctFromRent(maintInput, maintAuto);
+      });
+    }
+    syncRentPercentFields();
 
     srForm.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -345,13 +357,14 @@
       var expenses = num("sr-exp");
       var pitia = num("sr-pitia");
       var mgmt = num("sr-mgmt");
+      var maint = num("sr-maint");
       var vacancyPct = num("sr-vacancy") / 100;
       var years = num("sr-years") || 5;
 
       var sellCosts = value * sellCostPct;
       var sellNet = value - mortgage - sellCosts;
       var effectiveRent = rent * (1 - vacancyPct);
-      var monthlyCash = effectiveRent - expenses - pitia - mgmt;
+      var monthlyCash = effectiveRent - expenses - pitia - mgmt - maint;
       var annualCash = monthlyCash * 12;
       var rentCashTotal = annualCash * years;
 
@@ -364,6 +377,7 @@
         "Gross rent: " + money(rent) + "/mo<br>" +
         "After vacancy (" + (vacancyPct * 100).toFixed(0) + "%): " + money(effectiveRent) + "/mo<br>" +
         "Property management: " + money(mgmt) + "/mo<br>" +
+        "Maintenance: " + money(maint) + "/mo<br>" +
         "Other landlord expenses: " + money(expenses) + "/mo<br>" +
         "PITI / HOA: " + money(pitia) + "/mo<br>" +
         "Est. monthly cash flow: <strong>" + money(monthlyCash) + "</strong><br>" +
