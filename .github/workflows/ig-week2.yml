@@ -19,6 +19,11 @@ on:
           - feed
           - story
         default: auto
+      date:
+        description: YYYY-MM-DD to republish a missed day, or blank for today
+        type: string
+        required: false
+        default: ""
 
 jobs:
   publish:
@@ -35,4 +40,5 @@ jobs:
           META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
           META_IG_ID: ${{ secrets.META_IG_ID }}
           KIND: ${{ github.event.inputs.kind || 'auto' }}
+          DATE: ${{ github.event.inputs.date || '' }}
         run: node .github/scripts/publish-ig.mjs

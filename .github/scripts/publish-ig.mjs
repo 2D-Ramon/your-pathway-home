@@ -1,6 +1,7 @@
 /**
  * Publish today's Week 2 Instagram feed or story.
  * KIND=feed|story|auto  (auto: UTC 16h = feed, 17h = story)
+ * DATE=YYYY-MM-DD      (optional; default is today in America/Chicago)
  * Secrets: META_PAGE_TOKEN, META_IG_ID
  */
 const TOKEN = process.env.META_PAGE_TOKEN;
@@ -97,7 +98,11 @@ async function waitContainer(id) {
 }
 
 async function main() {
-  const dateKey = chicagoDate();
+  const requested = (process.env.DATE || "").trim();
+  const dateKey = requested || chicagoDate();
+  if (requested && !/^\d{4}-\d{2}-\d{2}$/.test(requested)) {
+    throw new Error("DATE must be YYYY-MM-DD");
+  }
   const post = MAP[dateKey];
   if (!post) {
     console.log("SKIP " + dateKey + " not in Week 2 window");
